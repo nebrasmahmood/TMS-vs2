@@ -1,0 +1,54 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-image: url('../../images/login-bg.jpg');*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /*background-image: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.4) 100%), url('../../images/login-bg.jpg');*/
+
+}
+.card-block{
+    padding: 3rem;
+}
+.login-btn{
+    padding: 8px 24px;
+}
+.img-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.secondary-text{
+    font-size: 14px;
+}
+
+.main-title{
+    margin-left: -2px;
+}
+@media (max-width: 576px){
+    .img-card{
+        display: none;
+    }
+}
+
+@media (min-width: 1200px){
+    .container {
+        max-width: 1140px;
+        width: 800px;
+    }
+    .img-card{
+        display: flex;
+    }
+}
+
+.img-section h2 > span{
+    font-weight: bold;
+    color: #17a2b8;
+}
+
+

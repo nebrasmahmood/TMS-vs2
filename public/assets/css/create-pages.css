@@ -1,0 +1,29 @@
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgb(255 255 255);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    text-align: left;
+}
+.card-body{
+    padding-top: 0 !important;
+}
+.row{
+    margin-top: 1rem !important;
+}
+h1{
+    font-size: 20px;
+}
+.text-muted{
+    margin-left: 6px;
+    font-size: 80%;
+}
+.invalid-feedback {
+    display: block;
+}
+.form-group {
+    margin-bottom: 0rem;
+}
+.submit-btn{
+    margin-top: 1rem;
+}

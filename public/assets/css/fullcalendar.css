@@ -1,0 +1,276 @@
+.my-header-day-number {
+    font-weight: 600;
+    font-size: 35px;
+    font-family: serif;
+}
+.my-header-day-name {
+    font-weight: 500;
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+.fc .fc-toolbar{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+.fc-toolbar .fc-toolbar-chunk:nth-child(1){
+    text-align: left;
+}
+.fc-toolbar .fc-toolbar-chunk:nth-child(2){
+    text-align: center;
+}
+.fc-toolbar .fc-toolbar-chunk:nth-child(3){
+    text-align: right;
+}
+.fc-toolbar .fc-toolbar-chunk:nth-child(3) > .btn-group{
+    direction: ltr;
+}
+.fc-dayGridMonth-view .my-header-day-name {
+    font-weight: 500;
+    font-size: 18px;
+    padding: 5px;
+    line-height: 1.5;
+}
+/*.dayGrid-day.fc-day-sat.ui-droppable-hover{*/
+/*    background-color: rgba(255, 255, 0, .25) !important;*/
+/*}*/
+/*.dayGrid-day.fc-day-sun.ui-droppable-hover{*/
+/*    background-color: rgba(0, 128, 0, .25) !important;*/
+/*}*/
+/*.dayGrid-day.fc-day-mon.ui-droppable-hover{*/
+/*    background-color: rgba(255, 0, 0, .25) !important;*/
+/*}*/
+/*.dayGrid-day.fc-day-tue.ui-droppable-hover{*/
+/*    background-color: rgba(128, 0, 128, .25) !important;*/
+/*}*/
+/*.dayGrid-day.fc-day-wed.ui-droppable-hover{*/
+/*    background-color: rgba(0, 0, 255, .25) !important;*/
+/*}*/
+/*.dayGrid-day.fc-day-thu.ui-droppable-hover{*/
+/*    background-color: rgba(0, 0, 0, .25) !important;*/
+/*}*/
+/*.dayGrid-day.fc-day-fri.ui-droppable-hover{*/
+/*    background-color: rgba(255, 165, 0, .25) !important;*/
+/*}*/
+/*.fc-highlight{*/
+/*    background-color: red !important;*/
+/*}*/
+.fc .fc-timegrid-slot-minor {
+    border-top-style: none !important;
+}
+.dayGrid-event{
+    margin-bottom: 5px;
+}
+.dayGrid-event > a{
+    background-color: white;
+    border: 1px solid white;
+    color: black;
+}
+.dayGrid-event > a .title, .dayGrid-event > a .date, .dayGrid-event > a .location{
+    color: black;
+}
+.dayGrid-event > a .date{
+    border-bottom: 1px solid #c1c1c1;
+    font-size: 11px;
+    direction: rtl;
+    text-align: right;
+    padding: 3px 6px;
+    display: flex;
+    justify-content: space-between;
+}
+.dayGrid-event > a .date .time-icon{
+    font-size: 10px;
+    margin-left: 3px;
+}
+.dayGrid-event > a .title{
+    font-size: 14px;
+    font-weight: 700;
+    text-align: right;
+    padding: 10px 6px;
+    border-bottom: 1px solid #c1c1c1;
+}
+.dayGrid-event > a .location{
+    font-size: 11px;
+    direction: rtl;
+    text-align: right;
+    padding: 3px 6px;
+    display: flex;
+    justify-content: space-between;
+}
+.dayGrid-event > a .location .location-icon{
+    font-size: 10px;
+    margin-left: 3px;
+}
+/*.dayGrid-event.bg-Fri > a .location{*/
+/*    border-bottom:3px solid orange !important;*/
+/*}*/
+/*.dayGrid-event.bg-Thu > a .location{*/
+/*    border-bottom:3px solid black !important;*/
+/*}*/
+/*.dayGrid-event.bg-Wed > a .location{*/
+/*    border-bottom:3px solid blue !important;*/
+/*}*/
+/*.dayGrid-event.bg-Tue > a .location{*/
+/*    border-bottom:3px solid purple !important;*/
+/*}*/
+/*.dayGrid-event.bg-Mon > a .location{*/
+/*    border-bottom:3px solid red !important;*/
+/*}*/
+/*.dayGrid-event.bg-Sun > a .location{*/
+/*    border-bottom:3px solid green !important;*/
+/*}*/
+/*.dayGrid-event.bg-Sat > a .location{*/
+/*    border-bottom:3px solid yellow !important;*/
+/*}*/
+a.fc-daygrid-event{
+    border: none !important;
+}
+/*th.fc-day.fc-day-fri{*/
+/*    background-color: orange;*/
+/*    color: white;*/
+/*}*/
+/*th.fc-day.fc-day-thu{*/
+/*    background-color: black;*/
+/*    color: white;*/
+/*}*/
+/*th.fc-day.fc-day-wed{*/
+/*    background-color: blue;*/
+/*    color: white;*/
+/*}*/
+/*th.fc-day.fc-day-tue{*/
+/*    background-color: purple;*/
+/*    color: white;*/
+/*}*/
+/*th.fc-day.fc-day-mon{*/
+/*    background-color: red;*/
+/*    color: white;*/
+/*}*/
+/*th.fc-day.fc-day-sun{*/
+/*    background-color: green;*/
+/*    color: white;*/
+/*}*/
+/*th.fc-day.fc-day-sat{*/
+/*    background-color: yellow;*/
+/*    color: black;*/
+/*}*/
+.fc-dayGridMonth-view .dayGrid-event .title{
+    padding: 0px 6px;
+}
+.fc-dayGridMonth-view .fc-day-fri .dayGrid-event .title{
+    background-color: rgba(255, 165, 0, .5) !important;
+    color: white !important;
+    border: 2px solid orange !important;
+}
+.fc-dayGridMonth-view .fc-day-sat .dayGrid-event .title{
+    background-color: rgba(255, 255, 0, .5) !important;
+    color: black !important;
+    border: 2px solid yellow !important;
+}
+.fc-dayGridMonth-view .fc-day-sun .dayGrid-event .title{
+    background-color: rgba(0, 128, 0, .5) !important;
+    color: white !important;
+    border: 2px solid green !important;
+}
+.fc-dayGridMonth-view .fc-day-mon .dayGrid-event .title{
+    background-color: rgba(255, 0, 0, .5) !important;
+    color: white !important;
+    border: 2px solid red !important;
+}
+.fc-dayGridMonth-view .fc-day-tue .dayGrid-event .title{
+    background-color: rgba(128, 0, 128, .5) !important;
+    color: white !important;
+    border: 2px solid purple !important;
+}
+.fc-dayGridMonth-view .fc-day-wed .dayGrid-event .title{
+    background-color: rgba(0, 0, 255, .5) !important;
+    color: white !important;
+    border: 2px solid blue !important;
+}
+.fc-dayGridMonth-view .fc-day-thu .dayGrid-event .title{
+    background-color: rgba(0, 0, 0, .5) !important;
+    color: white !important;
+    border: 2px solid black !important;
+}
+.btn-primary{
+    color: white;
+    border-color: transparent;
+    border-bottom: 2px solid transparent;
+    box-shadow: none !important;
+}
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active{
+    color: white;
+    border-color: transparent;
+    font-weight: 700;
+    border-bottom: 2px solid #001c27;
+    box-shadow: none !important;
+}
+.btn-primary:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):focus{
+    border-bottom: 2px solid #001c27;
+    box-shadow: none !important;
+}
+btn-primary:not(:disabled):not(.disabled).active {
+    border-bottom: 2px solid #001c27;
+    color: white;
+    box-shadow: none !important;
+}
+.btn-primary:hover,
+.btn-primary.active:hover{
+    color: black !important;
+    border-color: transparent;
+    font-weight: 700;
+    border-bottom: 2px solid #001c27 !important;
+    box-shadow: none !important;
+}
+.fc-scroller.fc-scroller-liquid-absolute{
+    overflow: hidden hidden !important;
+}
+.table-bordered thead th, .table-bordered thead td {
+     padding-top: 0px;
+     padding-bottom: 0px;
+}
+.fc-dayGridWeek-view .fc-col-header,.fc-dayGridWeek-view .fc-scrollgrid-sync-table{
+    width: 100% !important;
+    border-collapse: separate;
+    border-spacing: 10px 0;
+}
+.fc-dayGridWeek-view .fc-daygrid-body{
+    width: 100% !important;
+}
+body.sidenav-toggled-open .fc-dayGridWeek-view .fc-scrollgrid.table-bordered.fc-scrollgrid-liquid,
+body.sidenav-toggled-open .fc-dayGridWeek-view .fc-daygrid-body{
+    width: calc(100%) !important;
+    margin-right: 240px;
+    transition: all 0.5s ease-in-out;
+}
+/*.dayGrid-event.bg-Fri > a .edit-icon:hover, .dayGrid-event.bg-Fri:hover .edit-icon,*/
+/*.dayGrid-event.bg-Fri > a .delete-icon:hover{*/
+/*    color: orange !important;*/
+/*}*/
+/*.dayGrid-event.bg-Thu > a .edit-icon:hover, .dayGrid-event.bg-Thu:hover .edit-icon,*/
+/*.dayGrid-event.bg-Thu > a .delete-icon:hover{*/
+/*    color: black !important;*/
+/*}*/
+/*.dayGrid-event.bg-Wed > a .edit-icon:hover, .dayGrid-event.bg-Wed:hover .edit-icon,*/
+/*.dayGrid-event.bg-Wed > a .delete-icon:hover{*/
+/*    color: blue !important;*/
+/*}*/
+/*.dayGrid-event.bg-Tue > a .edit-icon:hover, .dayGrid-event.bg-Tue:hover .edit-icon,*/
+/*.dayGrid-event.bg-Tue > a .delete-icon:hover{*/
+/*    color: purple !important;*/
+/*}*/
+/*.dayGrid-event.bg-Mon > a .edit-icon:hover, .dayGrid-event.bg-Mon:hover .edit-icon,*/
+/*.dayGrid-event.bg-Mon > a .delete-icon:hover{*/
+/*    color: red !important;*/
+/*}*/
+/*.dayGrid-event.bg-Sun > a .edit-icon:hover, .dayGrid-event.bg-Sun:hover .edit-icon,*/
+/*.dayGrid-event.bg-Sun > a .delete-icon:hover{*/
+/*    color: green !important;*/
+/*}*/
+/*.dayGrid-event.bg-Sat > a .edit-icon:hover, .dayGrid-event.bg-Sat:hover .edit-icon,*/
+/*.dayGrid-event.bg-Sat > a .delete-icon:hover{*/
+/*    color: yellow !important;*/
+/*}*/
