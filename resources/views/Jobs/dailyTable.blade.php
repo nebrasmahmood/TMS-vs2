@@ -64,7 +64,7 @@
                                 @csrf()
                                 @method('put')
                                 @foreach($jobs as $job)
-                                    <input type="hidden" name=""
+                                    <input type="hidden" name="" />
                                     <tr>
                                         <th scope="row">{{ $loop->index + 1 }}</th>
                                         <td>{{ $job->user->name }}</td>

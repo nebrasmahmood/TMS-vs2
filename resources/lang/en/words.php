@@ -105,5 +105,9 @@ return [
     'daily Jobs'=>"Daily Jobs",
     'Jobs'=>"Jobs",
     'place'=>"Place",
+    'another_stops_no'=>"Another Stops No",
+    'cube_no'=>"Cube No.",
+    'percentage'=>"Percentage",
+    'notes'=>"Notes",
 ]
 ?>

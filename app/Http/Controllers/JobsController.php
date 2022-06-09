@@ -160,11 +160,12 @@ class JobsController extends Controller
     }
 
     public function update(UpdateJobRequest $request, WorkingDatesPlaces $job){
+//        dd($request->all());
         try{
             DB::beginTransaction();
             $job->update($request->all());
             session(['status'=>'success',
-                'msg'=>__('The jobs has been updated successfully!')]);
+                'msg'=>__('The job has been updated successfully!')]);
             DB::commit();
         }catch (\Exception $ex){
             DB::rollBack();
@@ -259,6 +260,8 @@ class JobsController extends Controller
             ->where('date', date('Y-m-d'))
             ->with(['place'=>function($q){
                 $q->select('id', 'name');
+            }, 'user'=>function($q){
+                $q->select('id', 'busNo');
             }])
             ->first();
         return view('Jobs.WorkerJobs.dayView', compact('job'));

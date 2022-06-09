@@ -413,6 +413,8 @@
             $("#modalTitle").text(day);
             $("#date").text(date);
             if(jobId){
+                $('#PlaceIdInput').val(placeId);
+                $('#dateInput').val(date)
                 let route = "{{ route('jobs.getData') }}";
                 let token = "{{ csrf_token()}}";
                 $.ajax({
