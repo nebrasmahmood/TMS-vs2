@@ -17,8 +17,9 @@
                 <div class="dropdown for-notification">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bell"></i>
-                        <span class="count bg-danger">5</span>
+                    <!--<span class="count bg-danger">5</span> -->
                     </button>
+                    <!--
                     <div class="dropdown-menu" aria-labelledby="notification">
                         <p class="red">You have 3 Notification</p>
                         <a class="dropdown-item media" href="#">
@@ -34,6 +35,7 @@
                             <p>Server #3 overloaded.</p>
                         </a>
                     </div>
+                -->
                 </div>
 
                 <div class="dropdown for-message">
@@ -41,8 +43,9 @@
                             id="message"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-envelope"></i>
-                        <span class="count bg-primary">9</span>
+                        <!--<span class="count bg-primary">3</span> -->
                     </button>
+                    <!--
                     <div class="dropdown-menu" aria-labelledby="message">
                         <p class="red">You have 4 Mails</p>
                         <a class="dropdown-item media " href="#">
