@@ -70,6 +70,9 @@
                     <li class="">
                         <a href="{{ route('totalHours.index') }}"> <i class="menu-icon fa fa-clock"></i>{{ __("words.Total Hours") }}</a>
                     </li>
+                    <li class="">
+                        <a href="{{ route('jobs.index') }}"> <i class="menu-icon fa fa-calendar-week"></i>{{ __("words.Week Jobs") }}</a>
+                    </li>
                 @else
                     <li class="">
                         <a href="{{ route('posts.index') }}"> <i class="menu-icon fa fa-file-alt"></i>{{ __("words.Show posts") }}</a>
@@ -79,6 +82,12 @@
                     </li>
                     <li class="">
                         <a href="{{ route('events.index') }}"> <i class="menu-icon fa fa-calendar-days"></i>{{ __("words.Events") }}</a>
+                    </li>
+                    <li class="">
+                        <a href="{{ route('jobs.weekJobsIndex') }}"> <i class="menu-icon fa fa-calendar-week"></i>{{ __("words.Week Jobs") }}</a>
+                    </li>
+                    <li class="">
+                        <a href="{{ route('jobs.dayJobs') }}"> <i class="menu-icon fa fa-calendar-day"></i>{{ __("words.daily Jobs") }}</a>
                     </li>
                 @endif
 {{--                <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->--}}

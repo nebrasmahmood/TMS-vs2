@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('status');
             $table->string('profile_photo', '255')->nullable();
             $table->rememberToken();
-
             $table->timestamps();
         });
     }

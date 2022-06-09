@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateAbsenceseRequest;
+use App\Http\Requests\CreateJobRequest;
+use App\Http\Requests\UpdateJobRequest;
+use App\Http\Requests\UpdateJobsRequest;
 use App\Models\AbsentUser;
 use App\Models\Place;
-use App\Models\User;
 use App\Models\WorkingDatesPlaces;
-use Illuminate\Http\Request;
 use DateTime;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class JobsController extends Controller
 {
     public function weekJobs(){
-//        return date('Y-m-d');
+        $status = session()->pull('status', null);
+        $msg = session()->pull('msg', null);
+
         $dateNow = date('Y-m-d');
         $date = request()->query('from') ?? $dateNow;
         $date2 = request()->query('to') ?? date('Y-m-d', strtotime($dateNow . ' +7 days'));
         $numberofWantedWeeks = request()->query('NumOfWeeks') ?? 1;
 
-//        return [$date, $date2, $numberofWantedWeeks];
         $places = Place::orderBy('id')->get();
 
-//        return $places;
         $days = [
             "Monday",
             "Tuesday",
@@ -46,7 +49,6 @@ class JobsController extends Controller
             $WeeksWithDates[date('W',strtotime($theDate))] = self::getDaysOfWeek($theDate);
         }
 
-//        return $WeeksWithDates;
         $result = [];
         foreach ($WeeksWithDates as $weekNo => $dates) {
             $result[$weekNo] = [];
@@ -57,7 +59,7 @@ class JobsController extends Controller
                         ->where('date', $date)
                         ->where('place_id', $place['id'])
                         ->with(["user"=>function ($q){
-                            $q->select("id", 'fname');
+                            $q->select("id", 'fname', 'busNo');
                         }])
                         ->first();
                     $status = $row ? $row : [];
@@ -74,26 +76,11 @@ class JobsController extends Controller
                 $result[$weekNo][$date]['sickness'][] = $sick;
             }
         }
-//
-//        foreach ($result as $weekNo => $dates){
-////            return $dates;
-//            foreach ($dates as $date => $placesId){
-////                return $placesId;
-//                foreach($placesId as $placeId => $jobData){
-//                    if($placeId == 'absencese'){
-//                        foreach($jobData[0] as $absentUser){
-//                            return $absentUser;
-////                            return $jobData[0]->reason;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return $result;
-        return view("Jobs.WeeksTable", compact('result', 'places', 'days'));
+        return view("Jobs.WeeksTable", compact('result', 'places', 'days',
+            'status', 'msg'));
     }
 
-    function getDaysOfWeek($selected_date){
+    public function getDaysOfWeek($selected_date){
         $date = new DateTime;
         $year = date('Y',strtotime($selected_date));
         $week = date('W',strtotime($selected_date));
@@ -103,4 +90,178 @@ class JobsController extends Controller
         }
         return $dates;
     }
+
+    public function dailyJobs($date){
+        $jobs = WorkingDatesPlaces::where('date', $date)->with(['user'=>function($q){
+            $q->select('id', DB::raw("CONCAT(fname, ' ', lname) as name"), 'busNo');
+        }])->get();
+        return view('Jobs.dailyTable' , compact('jobs'));
+    }
+
+    public function store(CreateJobRequest $request){
+        try{
+            DB::beginTransaction();
+            WorkingDatesPlaces::create($request->all());
+            session(['status'=>'success',
+                'msg'=>__('New job has been added successfully!')]);
+            DB::commit();
+        }catch (\Exception $ex){
+            DB::rollBack();
+            session(['status'=>'Error',
+                'msg'=>__('Something went wrong! Try again later.')]);
+        }
+        return redirect()->route('jobs.index');
+    }
+
+    public function absenceseStore(CreateAbsenceseRequest $request){
+        try{
+            DB::beginTransaction();
+            AbsentUser::create($request->all());
+            session(['status'=>'success',
+                'msg'=>__('New absencese record has been added successfully!')]);
+            DB::commit();
+        }catch (\Exception $ex){
+            DB::rollBack();
+            session(['status'=>'Error',
+                'msg'=>__('Something went wrong! Try again later.')]);
+        }
+        return redirect()->route('jobs.index');
+    }
+
+    public function storeAbsencese(CreateAbsenceseRequest $request){
+        try{
+            DB::beginTransaction();
+            WorkingDatesPlaces::create($request->all());
+            session(['status'=>'success',
+                'msg'=>__('New job has been added successfully!')]);
+            DB::commit();
+        }catch (\Exception $ex){
+            DB::rollBack();
+            session(['status'=>'Error',
+                'msg'=>__('Something went wrong! Try again later.')]);
+        }
+        return redirect()->route('jobs.index');
+    }
+
+    public function updateAll(UpdateJobsRequest $request){
+        try{
+            DB::beginTransaction();
+            foreach($request->jobs as $job_id => $data)
+                WorkingDatesPlaces::find($job_id)->update($data);
+            session(['status'=>'success',
+                'msg'=>__('The jobs has been approved successfully!')]);
+            DB::commit();
+        }catch (\Exception $ex){
+            DB::rollBack();
+            session(['status'=>'Error',
+                'msg'=>__('Something went wrong! Try again later.')]);
+        }
+        return redirect()->route('jobs.index');
+    }
+
+    public function update(UpdateJobRequest $request, WorkingDatesPlaces $job){
+        try{
+            DB::beginTransaction();
+            $job->update($request->all());
+            session(['status'=>'success',
+                'msg'=>__('The jobs has been updated successfully!')]);
+            DB::commit();
+        }catch (\Exception $ex){
+            DB::rollBack();
+            session(['status'=>'Error',
+                'msg'=>__('Something went wrong! Try again later.')]);
+        }
+        return redirect()->route('jobs.index');
+    }
+
+    public function absenceseUpdate(CreateAbsenceseRequest $request, AbsentUser $absent){
+        try{
+            DB::beginTransaction();
+            $absent->update($request->all());
+            session(['status'=>'success',
+                'msg'=>__('The absent record has been updated successfully!')]);
+            DB::commit();
+        }catch (\Exception $ex){
+            DB::rollBack();
+            session(['status'=>'Error',
+                'msg'=>__('Something went wrong! Try again later.')]);
+        }
+        return redirect()->route('jobs.index');
+    }
+
+    public function getData(Request $request){
+        $job = WorkingDatesPlaces::where('id', $request->job_id)
+        ->with(['user'=>function($q){
+            $q->select('id', DB::raw("CONCAT(fname, ' ', lname) as text"), 'busNo');
+        }, 'helper'=>function($q){
+            $q->select('id', DB::raw("CONCAT(fname, ' ', lname) as text"));
+        }])->first();
+        return response()->json($job);
+    }
+
+    public function absenceseGetData(Request $request){
+        $job = AbsentUser::where('id', $request->absencese_id)
+        ->with(['user'=>function($q){
+            $q->select('id', DB::raw("CONCAT(fname, ' ', lname) as text"));
+        }])->first();
+        return response()->json($job);
+    }
+
+    public function destroy(WorkingDatesPlaces $job){
+        try{
+            DB::beginTransaction();
+            $job->delete();
+            session(['status'=>'success',
+                'msg'=>__('The job has been deleted successfully!')]);
+            DB::commit();
+        }catch (\Exception $ex){
+            DB::rollBack();
+            session(['status'=>'Error',
+                'msg'=>__('Something went wrong! Try again later.')]);
+        }
+        return redirect()->route('jobs.index');
+    }
+
+    public function absenceseDestroy(AbsentUser $absent){
+        try{
+            DB::beginTransaction();
+            $absent->delete();
+            session(['status'=>'success',
+                'msg'=>__('The absencese record has been deleted successfully!')]);
+            DB::commit();
+        }catch (\Exception $ex){
+            DB::rollBack();
+            session(['status'=>'Error',
+                'msg'=>__('Something went wrong! Try again later.')]);
+        }
+        return redirect()->route('jobs.index');
+    }
+
+    public function getWeekJobs(){
+        $start = explode('T', request()->query('start'))[0];
+        $end = explode('T', request()->query('end'))[0];
+        $jobs = WorkingDatesPlaces::select('id', 'date as start', 'place_id')
+            ->where('user_id', auth()->id())
+            ->whereBetween('date', [$start, $end])
+            ->with(['place' => function($q){
+                $q->select('id', 'name');
+            }])
+            ->get();
+        return response()->json($jobs);
+    }
+
+    public function weekJobsIndex(){
+        return view('Jobs.WorkerJobs.weekView');
+    }
+
+    public function dayJobsIndex(){
+        $job = WorkingDatesPlaces::where('user_id', auth()->id())
+            ->where('date', date('Y-m-d'))
+            ->with(['place'=>function($q){
+                $q->select('id', 'name');
+            }])
+            ->first();
+        return view('Jobs.WorkerJobs.dayView', compact('job'));
+    }
+
 }
