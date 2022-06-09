@@ -28,7 +28,7 @@ class CreateUsersRequest extends FormRequest
             'fname'=>'required|max:255',
             'lname'=>'required|max:255',
             'email'=>'required|email|max:255|unique:users,email,' . $id,
-            'bus_no'=>'required_if:role,==,0|max:20',
+            'busNo'=>'required_if:role,==,0|max:20',
             'role'=>'required',
         ];
         if($this->routeIs('users.update') && isset($this->password)){

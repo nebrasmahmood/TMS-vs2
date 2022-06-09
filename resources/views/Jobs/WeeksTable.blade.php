@@ -1,5 +1,6 @@
 @extends("layout.master")
 @section("css-scripts")
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="{{ asset('assets/css/select2.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
@@ -57,17 +58,20 @@
             border-radius: 20px;
             border: 3px solid #86c65161;
         }
-        tbody th {
+        tbody th, tbody td:not([colspan]) {
             cursor: pointer;
         }
-        /*.text-danger{*/
-        /*    color: #721c24 !important;*/
-        /*}*/
+        .invalid-feedback {
+            display: block;
+        }
     </style>
 @endsection
 @section('content')
     <div class="container-fluid pr-0">
         <div class="row mr-0">
+            @foreach($errors->all() as $error)
+                <span>{{ $error }}</span>
+            @endforeach
             <div class="col-12 pr-0">
                 <div class="table-responsive pr-3">
                     <form class="row m-0">
@@ -94,7 +98,7 @@
                             </div>
                         </div>
                         <div class="col-1 pr-0 d-flex justify-content-center align-items-end mb-3">
-                            <button type="submit" class="btn btn-success w-100" style="border-radius: 0.25rem;">Search</button>
+                            <button type="submit" id="search-btn" class="btn btn-success w-100" style="border-radius: 0.25rem;">Search</button>
                         </div>
                     </form>
                     <table class="table table-bordered mb-0">
@@ -104,10 +108,10 @@
                             @foreach ($places as $place)
                                 <th class="header" scope="col">{{ $place['number'] }}<span>{{ $place['name'] }}</span></th>
                             @endforeach
-                            <th class="header bg-danger" scope="col" style="vertical-align:middle;">
+                            <th colspan="4" class="header bg-danger" scope="col" style="vertical-align:middle;">
                                 Absencese
                             </th>
-                            <th class="header bg-warning" scope="col" style="vertical-align:middle;">
+                            <th colspan="2" class="header bg-warning" scope="col" style="vertical-align:middle;">
                                 Sickness
                             </th>
                         </tr>
@@ -115,26 +119,34 @@
                         <tbody>
                         @foreach ($result as $weekNo => $dates)
                             <tr class="bg-secondary colspan">
-                                <td colspan="{{ count($places) + 3 }}">Week {{ $weekNo }}</td>
+                                <td colspan="{{ count($places) + 7 }}">Week {{ $weekNo }}</td>
                             </tr>
                             @foreach ($dates as $date => $placesId)
                                 <tr id="{{ $days[$loop->index]. '-' .$weekNo }}" date="{{ $date }}">
                                     <th scope="row"><span class="coution"><i class="fas fa-exclamation-triangle"></i></span>{{ $days[$loop->index] }}<span>{{ $date }}</span></th>
                                     @foreach($placesId as $placeId => $jobData)
                                         @if($placeId == 'absencese')
-                                            <td class="absencese">
-                                                @foreach($jobData[0] as $absentUser)
-                                                    <span userId="{{ $absentUser->user->id ?? '' }}">{{ $absentUser->user->fname ?? 0 }}</span>
-                                                @endforeach
-                                            </td>
+                                            @for($i = 0; $i < 4; $i++)
+                                                @if(isset($jobData[0][$i]))
+                                                    <td class="absencese reason" absenceseId="{{ $jobData[0][$i]->id ?? '' }}" userId="{{ $jobData[0][$i]->user->id ?? '' }}">
+                                                        <span>{{ $jobData[0][$i]->user->fname ?? 0 }}</span>
+                                                    </td>
+                                                @else
+                                                <td class="absencese reason" absenceseId="" userId=""></td>
+                                                @endif
+                                            @endfor
                                         @elseif($placeId == 'sickness')
-                                            <td class="sickness">
-                                                @foreach($jobData[0] as $sickUser)
-                                                    <span userId="{{ $sickUser->user->id ?? '' }}">{{ $sickUser->user->fname ?? 0 }}</span>
-                                                @endforeach
-                                            </td>
+                                            @for($i = 0; $i < 2; $i++)
+                                                @if(isset($jobData[0][$i]))
+                                                    <td class="sickness reason" absenceseId="{{ $jobData[0][$i]->id ?? '' }}" userId="{{ $jobData[0][$i]->user->id ?? '' }}">
+                                                        <span>{{ $jobData[0][$i]->user->fname ?? 0 }}</span>
+                                                    </td>
+                                                @else
+                                                    <td class="sickness reason" absenceseId="" userId=""></td>
+                                                @endif
+                                            @endfor
                                         @else($placeId != 'absencese' && $placeId != 'sickness')
-                                        <td class="place_cell" placeId="{{ $placeId }}" jobId="{{ $jobData[0]->id ?? '' }}" userId="{{ $jobData[0]->user->id ?? '' }}" busNo="{{ $jobData[0]->busNo ?? '' }}">{{ $jobData[0]->user->fname ?? '' }}<span class="busNumber">{{ $jobData[0]->busNo ?? '' }}</span></td>
+                                        <td class="place_cell" placeId="{{ $placeId }}" jobId="{{ $jobData[0]->id ?? '' }}" userId="{{ $jobData[0]->user->id ?? '' }}" busNo="{{ $jobData[0]->busNo ?? ($jobData[0]->user->busNo ?? '') }}">{{ $jobData[0]->user->fname ?? '' }}<span class="busNumber">{{ $jobData[0]->busNo ?? ($jobData[0]->user->busNo ?? '') }}</span></td>
                                         @endif
                                     @endforeach
                                 </tr>
@@ -159,19 +171,26 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="addJobForm" action="{{ route('jobs.store') }}" method="post">
+                        @csrf()
+                        <input type="hidden" id="_method" name="_method" value="">
+                        <input type="hidden" name="place_id" id="PlaceIdInput" />
+                        <input type="hidden" name="date" id="dateInput" />
                         <div class="form-group row">
                             <label for="user_id" class="col-sm-3 col-form-label">Username</label>
                             <div class="col-sm-9">
-                                <select class="form-control userSelect" id="user_id" name="user_id">
+                                <select class="form-control @error('user_id') is-invalid @enderror userSelect" id="user_id" name="user_id">
                                     <option value="0" selected>{{ __('words.choose_username') }}</option>
                                 </select>
+                                @error("user_id")
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="bus_no" class="col-sm-3 col-form-label">Bus Number</label>
                             <div class="col-sm-9">
-                                <select class="form-control busSelect" id="bus_no" name="busNo">
+                                <select class="form-control busSelect" id="bus_no" name="busNo" disabled>
                                     <option value="0" selected>{{ __('words.choose_busNo') }}</option>
                                 </select>
                             </div>
@@ -180,44 +199,109 @@
                             <label for="stops_no" class="col-sm-3 col-form-label">Stops Number</label>
                             <div class="col-sm-9">
                                 <input type="number" id="stops_no" name="stops_no" value="{{ old('stops_no') }}" placeholder="Enter stops number.." class="form-control is-valid @error('stops_no')is-invalid @enderror">
+                                @error('stops_no')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="anotherStops_no" class="col-sm-3 col-form-label">Another Stops Number</label>
+                            <label for="AnotherstopsNo" class="col-sm-3 col-form-label">Another Stops Number</label>
                             <div class="col-sm-9">
-                                <input type="number" id="anotherStops_no" name="anotherStops_no" value="{{ old('anotherStops_no') }}" placeholder="Enter another stops number.." class="form-control is-valid @error('anotherStops_no')is-invalid @enderror">
+                                <input type="number" id="AnotherstopsNo" name="AnotherstopsNo" value="{{ old('AnotherstopsNo') }}" placeholder="Enter another stops number.." class="form-control is-valid @error('AnotherstopsNo')is-invalid @enderror">
+                                @error('AnotherstopsNo')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="cube_no" class="col-sm-3 col-form-label">Cube Number</label>
                             <div class="col-sm-9">
                                 <input type="number" id="cube_no" name="cube_no" value="{{ old('cube_no') }}" placeholder="Enter cube number.." class="form-control is-valid @error('cube_no')is-invalid @enderror">
+                                @error('cube_no')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="percentage" class="col-sm-3 col-form-label">Percentage</label>
                             <div class="col-sm-9">
                                 <input type="number" id="percentage" name="percentage" value="{{ old('percentage') }}" placeholder="Enter percentage.." class="form-control is-valid @error('percentage')is-invalid @enderror">
+                                @error('percentage')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="notes" class="col-sm-3 col-form-label">Notes</label>
                             <div class="col-sm-9">
                                 <textarea id="notes" name="notes" placeholder="Enter notes.." class="form-control is-valid @error('notes')is-invalid @enderror"></textarea>
+                                @error('notes')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="helper_id" class="col-sm-3 col-form-label">Username</label>
+                            <label for="helper_id" class="col-sm-3 col-form-label">Helper</label>
                             <div class="col-sm-9">
-                                <select class="form-control helperSelect" id="helper_id" name="helper_id">
+                                <select class="form-control @error('helper_id') is-invalid @enderror helperSelect" id="helper_id" name="helper_id">
                                     <option value="0" selected>{{ __('words.choose_helperName') }}</option>
                                 </select>
+                                @error('helper_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Save</button>
+                    <button type="submit" onclick="$('#addJobForm').submit()" class="btn btn-success">Save</button>
+                    <form method="POST" id="deleteJobForm" style="display: none;">
+                        @csrf()
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade p-0" id="absenceseModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title" id="absentModalTitle"></h5>
+                        <span id="absentDate"></span>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addAbsentForm" action="{{ route('jobs.storeAbsencese') }}" method="post">
+                        @csrf()
+                        <input type="hidden" id="absent_method" name="_method" value="">
+                        <input type="hidden" name="adsent_date" id="absent_date" />
+                        <input type="hidden" name="reason" id="reason" />
+                        <div class="form-group row">
+                            <label for="absent_user_id" class="col-sm-3 col-form-label">Username</label>
+                            <div class="col-sm-9">
+                                <select class="form-control @error('absent_user_id') is-invalid @enderror absentUser" id="absent_user_id" name="absent_user_id">
+                                    <option value="0" selected>{{ __('words.choose_username') }}</option>
+                                </select>
+                                @error("absent_user_id")
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" onclick="$('#addAbsentForm').submit()" class="btn btn-success" disabled>Save</button>
+                    <form method="POST" id="deleteAbsentForm" style="display: none;">
+                        @csrf()
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -227,6 +311,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="{{ asset('/assets/js/select2.min.js')}}"></script>
     <script>
+        $("#search-btn").on('click', function (e){
+            e.preventDefault();
+            if(!$("#NumOfWeeks").val()){
+                $("#NumOfWeeks").val('1');
+            }
+            $(this).closest('form').submit();
+        })
         $('input.datepicker').datepicker({
             format: "yyyy-mm-dd",
             maxViewMode: 2,
@@ -237,12 +328,22 @@
         }).on('change', function(event) {
 
         });
+        @if(isset($errors) && count($errors) > 0)
+            $('#AddJobModal').modal('show');
+        @endif
+    </script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
     </script>
     <script>
         $(window).resize(function(event){
             $(".table-responsive").css("height", $(window).height() - $(".table-responsive").offset().top )
         })
-        $(".table-responsive").css("height", $(window).height() - $(".table-responsive").offset().top + 20)
+        $(".table-responsive").css("height", $(window).height() - $(".table-responsive").offset().top)
         innerArray = {}
         var valueGroups = $(".table tbody tr:not(.colspan)").filter(function(index){
             users=[]
@@ -250,7 +351,7 @@
             duplicatedBuses = []
             duplicatedUsers = []
             rowId = $(this).attr('id');
-            for (let i = 0; i < {{ count($places) + 2 }}; i++){
+            for (let i = 0; i < {{ count($places) + 6 }}; i++){
                 td = $(this).find('td')[i];
                 if(td.className == 'absencese' || td.className == 'sickness'){
                     el = $(td)[0]
@@ -264,8 +365,8 @@
                         coutionSpan.css("display", 'inline')
                     }
                     else
-                        if(userId)
-                            users.push(userId)
+                    if(userId)
+                        users.push(userId)
 
                     continue;
                 }
@@ -279,8 +380,8 @@
                     coutionSpan.css("display", 'inline')
                 }
                 else
-                    if(userId)
-                        users.push(userId)
+                if(userId)
+                    users.push(userId)
 
                 if(busNumber && buses.includes(busNumber)){
                     tr = $(`.table tbody tr#${rowId}`)
@@ -290,8 +391,8 @@
                     coutionSpan.css("display", 'inline')
                 }
                 else
-                    if(busNumber)
-                        buses.push(busNumber)
+                if(busNumber)
+                    buses.push(busNumber)
             }
             innerArray[rowId] = {};
             innerArray[rowId]['users'] = users
@@ -303,19 +404,129 @@
 
         $(".table tbody tr td.place_cell").on('click', function(){
             console.log("clicked");
+            var placeId = $(this).attr('placeid');
             var jobId = $(this).attr('jobId')
+            var date = $(this).parent().attr('date');
+            $("body").css('padding', '0px !important')
+            day = $(this).parent().attr('id').split('-')[0];
+            date = $(this).parent().attr('date');
+            $("#modalTitle").text(day);
+            $("#date").text(date);
             if(jobId){
-                // get data by ajax
+                let route = "{{ route('jobs.getData') }}";
+                let token = "{{ csrf_token()}}";
+                $.ajax({
+                    url: route,
+                    type: 'POST',
+                    data: {
+                        _token:token,
+                        job_id:jobId,
+                    },
+                    success: function(response) {
+                        var newOption = new Option(`${response.user.text}`, response.user.id, true, true);
+                        $('.userSelect').append(newOption).trigger('change');
+                        var newBusOption = new Option(`${response.user.busNo}`, response.user.id, true, true);
+                        $('.busSelect').append(newBusOption).trigger('change');
+                        $("#stops_no").val(response.stops_no)
+                        $("#AnotherstopsNo").val(response.AnotherstopsNo)
+                        $("#cube_no").val(response.cube_no)
+                        $("#percentage").val(response.percentage)
+                        $("#notes").text(response.notes)
+                        if(response.helper_id){
+                            var newHelperOption = new Option(`${response.helper.text}`, response.helper.id, true, true);
+                            $('.helperSelect').append(newHelperOption).trigger('change');
+                        }else{
+                            var newHelperOption = new Option("{{ __('words.choose_helperName') }}", 0, true, true);
+                            $('.helperSelect').append(newHelperOption).trigger('change');
+                        }
+                        $("#addJobForm").attr('action', '{{ url('/') }}/jobs/update/' + response.id);
+                        $('#_method').val('put')
+                        $(".invalid-feedback").remove()
+                        $("#addJobForm .is-invalid").removeClass('is-invalid');
+                        $("#AddJobModal .modal-footer > button").text('Edit');
+                        $("#AddJobModal #deleteJobForm").css('display', 'block');
+                        $("#AddJobModal #deleteJobForm").attr('action', '{{ url('/') }}/jobs/'+ response.id);
+                        $("#AddJobModal").modal('show');
+                    },
+                    error: function(xhr) {
+                        //Do Something to handle error
+                    }
+                });
             }else{
+                $('#PlaceIdInput').val(placeId);
+                $('#dateInput').val(date)
+
+                var newOption = new Option("{{ __('words.choose_username') }}", 0, true, true);
+                $('.userSelect').append(newOption).trigger('change');
+                var newBusOption = new Option("{{ __('words.choose_busNo') }}", 0, true, true);
+                $('.busSelect').append(newBusOption).trigger('change');
+                $("#stops_no").val('')
+                $("#AnotherstopsNo").val('')
+                $("#cube_no").val('')
+                $("#percentage").val('')
+                $("#notes").text('')
+                var newHelperOption = new Option("{{ __('words.choose_helperName') }}", 0, true, true);
+                $('.helperSelect').append(newHelperOption).trigger('change');
+                $("#addJobForm").attr('action', '{{ route('jobs.store') }}');
+                $('#_method').val('')
+                $(".invalid-feedback").remove()
+                $("#addJobForm .is-invalid").removeClass('is-invalid');
+                $("#AddJobModal .modal-footer > button").text('Save');
+                $("#AddJobModal #deleteJobForm").css('display', 'none');
+                $("#AddJobModal #deleteJobForm").attr('action', '');
                 $("#AddJobModal").modal('show');
-                $("body").css('padding', '0px !important')
-                day = $(this).parent().attr('id').split('-')[0];
-                date = $(this).parent().attr('date');
-                $("#modalTitle").text(day);
-                $("#date").text(date);
-                console.log(day)
             }
-            console.log()
+        })
+
+        $(".table tbody tr td.reason").on('click', function(){
+            let absenceseId = $(this).attr('absenceseId');
+            var date = $(this).parent().attr('date');
+            var reason = $(this).hasClass('absencese') ? 0 : 1;
+            $('#absent_date').val(date)
+            $('#reason').val(reason);
+            $("body").css('padding', '0px !important')
+            let day = $(this).parent().attr('id').split('-')[0];
+            $("#absentModalTitle").text(day);
+            $("#absentDate").text(date);
+            if(absenceseId){
+                let route = "{{ route('absencese.getData') }}";
+                let token = "{{ csrf_token()}}";
+                $.ajax({
+                    url: route,
+                    type: 'POST',
+                    data: {
+                        _token:token,
+                        absencese_id: absenceseId,
+                    },
+                    success: function(response) {
+                        var newOption = new Option(`${response.user.text}`, response.user.id, true, true);
+                        $('.absentUser').append(newOption).trigger('change');
+                        $("#addAbsentForm").attr('action', '{{ url('/') }}/absencese/update/' + response.id);
+                        $('#absent_method').val('put')
+                        $(".invalid-feedback").remove()
+                        $("#addAbsentForm .is-invalid").removeClass('is-invalid');
+                        $("#absenceseModal .modal-footer > button").text('Edit');
+                        $("#absenceseModal #deleteAbsentForm").css('display', 'block');
+                        $("#absenceseModal #deleteAbsentForm").attr('action', '{{ url('/') }}/absencese/'+ response.id);
+                        $("#absenceseModal").modal('show');
+                    },
+                    error: function(xhr) {
+                        //Do Something to handle error
+                    }
+                });
+            }
+            else{
+                var newOption = new Option("{{ __('words.choose_username') }}", 0, true, true);
+                $('.absentUser').append(newOption).trigger('change');
+                $("#addAbsentForm").attr('action', '{{ route('absencese.store') }}');
+                $('#absent_method').val('')
+                $(".invalid-feedback").remove()
+                $("#addAbsentForm .is-invalid").removeClass('is-invalid');
+                $("#absenceseModal .modal-footer > button").text('Save');
+                $("#absenceseModal #deleteAbsentForm").css('display', 'none');
+                $("#absenceseModal #deleteAbsentForm").attr('action', '');
+                $("#absenceseModal").modal('show');
+            }
         })
 
         $('.userSelect').select2({
@@ -323,6 +534,10 @@
             language: "ar",
             searchInputPlaceholder: 'Enter username..',
             width: '100%',
+            @error('user_id')
+            dropdownCssClass : 'error',
+            selectionCssClass: 'error',
+            @enderror
             templateResult: formatUser,
             templateSelection: SelectUser,
             dropdownParent: $("#AddJobModal"),
@@ -346,6 +561,43 @@
             }
         });
 
+        $('.absentUser').select2({
+            placeholder: "{{ __('words.choose_username') }}",
+            searchInputPlaceholder: 'Enter username..',
+            width: '100%',
+            @error('absent_user_id')
+            dropdownCssClass : 'error',
+            selectionCssClass: 'error',
+            @enderror
+            dropdownParent: $("#absenceseModal"),
+            ajax: {
+                url: '{{ route('users.findUser') }}',
+                type: 'post',
+                dataType: 'json',
+                delay: 150,
+                data: function (params) {
+                    return {
+                        _token: "{{ csrf_token() }}",
+                        search: params.term
+                    };
+                },
+                processResults: function(response) {
+                    return {
+                        results: response
+                    }
+                },
+                cache: true,
+            }
+        });
+
+        $('.absentUser').on('select2:select', function (e) {
+            if($('#absent_user_id').val() == 0){
+                $("#absenceseModal .modal-footer > button").attr('disabled', 'disabled');
+            }else{
+                $("#absenceseModal .modal-footer > button").removeAttr('disabled');
+            }
+        });
+
         function formatUser (opt) {
             if(opt.busNo){
                 var $opt = $(
@@ -358,9 +610,11 @@
             }
             return $opt;
         }
+
         function SelectUser (opt) {
             if(opt.busNo){
-                var newOption = new Option(`${opt.busNo}`, opt.id, true, true);
+                $("#bus_no").children().remove();
+                var newOption = new Option(`${opt.busNo ?? ""}`, opt.id, true, true);
                 $('.busSelect').append(newOption).trigger('change');
             }
             var $opt = $(
@@ -368,6 +622,13 @@
             );
             return $opt;
         }
+
+        $('.userSelect').on('select2:selecting', function (e) {
+            if($('#user_id').children().length > 2){
+                $('#user_id').children()[1].remove();
+                console.log('2');
+            }
+        });
 
         $('.busSelect').select2({
             placeholder: "{{ __('words.choose_busNo') }}",
@@ -420,22 +681,19 @@
             return $opt;
         }
 
-        $(".select2").on('click', function(){
-            console.log($(this));
-            $(this).find("input.select2-search__field").focus();
-        });
-
         $("tbody th").on('click', function(){
-
-            window.location.href = ""
-            console.log($(this).parent().attr("id"));
+            let date = $(this).parent().attr("date")
+            window.location.href = "{{ url('/') . "/daily-jobs/" }}" + date
         });
-
 
         $('.helperSelect').select2({
             placeholder: "{{ __('words.choose_username') }}",
             language: "ar",
             searchInputPlaceholder: 'Enter username..',
+            @error('helper_id')
+            dropdownCssClass : 'error',
+            selectionCssClass: 'error',
+            @enderror
             width: '100%',
             templateResult: formatUser,
             dropdownParent: $("#AddJobModal"),

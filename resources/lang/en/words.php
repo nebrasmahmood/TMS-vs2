@@ -101,5 +101,9 @@ return [
     'end_placeholder'=>"Enter End Time",
     'Total Hours'=>"Total Hours",
     'show'=>"Show",
+    'Week Jobs'=>"Week Jobs",
+    'daily Jobs'=>"Daily Jobs",
+    'Jobs'=>"Jobs",
+    'place'=>"Place",
 ]
 ?>

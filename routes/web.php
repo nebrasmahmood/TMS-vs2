@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\DashboardPageController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\PlacesController;
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => ['auth']],function(){
-    Route::get('/', function () {return view('welcome');})->name('dashboard');
+    Route::get('/', [DashboardPageController::class, 'index'])->name('dashboard');
 
     Route::resource('places', PlacesController::class);
     Route::post('places/find-place', [PlacesController::class, 'findPlace'])->name('places.findPlace');
@@ -34,9 +35,24 @@ Route::group(['middleware' => ['auth']],function(){
     Route::resource('users', UsersController::class);
     Route::post('users/find-user', [UsersController::class, 'findUser'])->name('users.findUser');
     Route::post('users/find-bus', [UsersController::class, 'findBus'])->name('users.findBus');
-    Route::get('week-jobs', [JobsController::class, 'weekJobs']);
-    Route::get('/test', [TestController::class, 'index'])->name('test');
 
+    Route::get('week-jobs', [JobsController::class, 'weekJobs'])->name('jobs.index');
+    Route::get('daily-jobs/{date}', [JobsController::class, 'dailyJobs'])->name('jobs.dailyJobs');
+    Route::post('jobs/store', [JobsController::class, 'store'])->name('jobs.store');
+    Route::post('absencese/store', [JobsController::class, 'absenceseStore'])->name('absencese.store');
+    Route::post('jobs/getData', [JobsController::class, 'getData'])->name('jobs.getData');
+    Route::post('absencese/getData', [JobsController::class, 'absenceseGetData'])->name('absencese.getData');
+    Route::put('jobs/update-all', [JobsController::class, 'updateAll'])->name('jobs.updateAll');
+    Route::put('jobs/update/{job}', [JobsController::class, 'update'])->name('jobs.update');
+    Route::put('absencese/update/{absent}', [JobsController::class, 'absenceseUpdate'])->name('absencese.update');
+    Route::delete('jobs/{job}', [JobsController::class, 'destroy'])->name('jobs.destroy');
+    Route::delete('absencese/{absent}', [JobsController::class, 'absenceseDestroy'])->name('absencese.destroy');
+    Route::post('jobs/store-absencese', [JobsController::class, 'storeAbsencese'])->name('jobs.storeAbsencese');
+    Route::get('jobs/get-week-jobs', [JobsController::class, 'getWeekJobs'])->name('jobs.getWeekJobs');
+    Route::get('jobs/week-jobs', [JobsController::class, 'weekJobsIndex'])->name('jobs.weekJobsIndex');
+    Route::get('jobs/daily-jobs', [JobsController::class, 'dayJobsIndex'])->name('jobs.dayJobs');
+
+    Route::get('/test', [TestController::class, 'index'])->name('test');
 
     Route::resource('categories', CategoriesController::class);
     Route::post('categories/find-category', [CategoriesController::class, 'findCategory'])->name('categories.findCategory');
