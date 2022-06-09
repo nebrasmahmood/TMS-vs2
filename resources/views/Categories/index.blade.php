@@ -41,10 +41,10 @@
                         <thead>
                         <tr class="table-head">
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">{{ __("words.Name") }}</th>
+                            <th scope="col">{{ __("words.description") }}</th>
+                            <th scope="col">{{ __("words.Status") }}</th>
+                            <th scope="col">{{ __("words.Actions") }}</th>
                         </tr>
                         </thead>
                         <tbody>
