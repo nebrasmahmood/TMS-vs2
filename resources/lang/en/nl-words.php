@@ -2,7 +2,7 @@
 
 return [
     'Dashboard'=>'Dashboard',
-    'Users'=>'Users',
+    'Users'=>'Gebruikers',
     'Home'=>'Home',
     'Add Place'=>'Add Place',
     'Name'=>'Name',
@@ -13,7 +13,7 @@ return [
     'Add New User'=>'Add New User',
     'Show Places'=>'Show Places',
     'Places'=>'Places',
-    'firstName'=>'First Name',
+    'firstName'=>'Voor Naam',
     'lastName'=>'Last Name',
     'Email'=>'Email',
     'Bus Number'=>'Bus Number',

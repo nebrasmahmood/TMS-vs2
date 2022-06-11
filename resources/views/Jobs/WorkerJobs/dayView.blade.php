@@ -58,6 +58,26 @@
                                 <th scope="row">{{ __('words.place') }}</th>
                                 <td>{{ $job->place->name }}</td>
                             </tr>
+                            <tr>
+                                <th scope="row">{{ __('words.busNo') }}</th>
+                                <td>{{ $job->user->busNo ?? '' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('words.another_stops_no') }}</th>
+                                <td>{{ $job->AnotherstopsNo }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('words.cube_no') }}</th>
+                                <td>{{ $job->cube_no }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('words.percentage') }}</th>
+                                <td>{{ $job->percentage }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('words.notes') }}</th>
+                                <td>{{ $job->notes }}</td>
+                            </tr>
                         @else
                             <tr>
                                 <td>
