@@ -185,9 +185,9 @@
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             headerToolbar: {
-                start: '',
+                start: 'prev,next',
                 center: 'title', // will normally be on the left. if RTL, will be on the right
-                end: '', // "listDay,listWeek,listMonth,listYear,timeGrid,timeGridWeek,timeGridFourDay"
+                end: 'today', // "listDay,listWeek,listMonth,listYear,timeGrid,timeGridWeek,timeGridFourDay"
             },
             direction: 'ltr',
             eventSources: [events],

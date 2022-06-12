@@ -78,13 +78,13 @@ class EventsController extends Controller
     }
 
 
-    public function changeTimeFormat($time){ // 8:12 AM
+    public function changeTimeFormat($time){ // 8:12 AM 12:30 PM
         $hour = explode(":", explode(' ', $time)[0])[0]; // 8
         $min = explode(":", explode(' ', $time)[0])[1]; // 12
         $sec = '00';
         if(strlen($hour) == 1)
             $hour = '0' . $hour;
-        if(explode(' ',$time)[1] == 'PM'){
+        if(explode(' ',$time)[1] == 'PM' && intval($hour) > 12){
             $hour = intval($hour) + 12;
         }
         $final_time = $hour . ':' . $min . ':' . $sec;
@@ -129,9 +129,27 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateEventRequest $request, Event $event)
     {
-        //
+//        dd($request->all());
+        try{
+            DB::beginTransaction();
+            $date = $request->date;
+            $startTime = self::changeTimeFormat($request->start);
+            $endTime = self::changeTimeFormat($request->end);
+            $request->merge(['start'=>$date . " " . $startTime,
+                'end'=>$date . " " . $endTime]);
+            $event->update($request->all());
+            session(['status'=>'success',
+                'msg'=>__('The event has been updated successfully!')]);
+            DB::commit();
+        }catch (\Exception $ex){
+            dd($ex);
+            DB::rollBack();
+            session(['status'=>'Error',
+                'msg'=>__('Something went wrong! Try again later.')]);
+        }
+        return redirect()->route('events.index');
     }
 
     /**

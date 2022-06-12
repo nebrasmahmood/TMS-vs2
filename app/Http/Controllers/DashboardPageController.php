@@ -34,6 +34,7 @@ class DashboardPageController extends Controller
             ->limit(5)
             ->get();
 
+
         $recentCats = Category::select('id', 'name', 'description')
             ->where('status', 1)
             ->latest()
@@ -43,6 +44,7 @@ class DashboardPageController extends Controller
         $recentPlaces = Place::latest()
             ->limit(5)
             ->get();
+//        return $recentPlaces;
 
         return view('welcome', compact('usersCount', 'placesCount', 'categoriesCount', 'postsCount',
             'recentUsers', 'recentPlaces', 'recentCats', 'recentPosts'));
