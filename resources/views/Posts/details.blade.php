@@ -6,13 +6,13 @@
             margin-bottom: 0px;
         }
         .card-text{
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            /*display: -webkit-box;*/
+            /*-webkit-line-clamp: 2;*/
+            /*-webkit-box-orient: vertical;*/
+            /*overflow: hidden;*/
+            /*text-overflow: ellipsis;*/
             direction: ltr;
-            min-height: calc(2*21.56px);
+            /*min-height: calc(2*21.56px);*/
         }
         .dots-btn{
             padding: 10px;

@@ -162,7 +162,7 @@ class EventsController extends Controller
     {
         try{
             DB::beginTransaction();
-//            $event->delete();
+            $event->delete();
             session(['status'=>'success',
                 'msg'=>__('The event has been deleted successfully!')]);
             DB::commit();
