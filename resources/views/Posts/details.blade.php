@@ -99,7 +99,7 @@
         <div class="card">
             <div class="card-body container-fluid">
                 <div class="card">
-                    <img class="card-img-top" src="{{ asset($post->post_img) }}" alt="Post image">
+                    <img class="card-img-top" src="{{ $post->post_img ? asset($post->post_img) : asset('images/no-image.png') }}" alt="Post image">
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <div class="card-text">

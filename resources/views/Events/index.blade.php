@@ -195,8 +195,11 @@
                         <div class="col-lg-3 col-md-12 p-0">
                             <div class=" card card--calendar p-0 mg-b-20">
                                 <div class="card-body" style="padding: 1.5rem 0.5rem;">
-                                    <form action="{{ route('events.store') }}" method="post" class="">
+                                    <form action="{{ route('events.store') }}" method="post" class="" id="addEventForm">
                                         @csrf
+                                        @if(isset($event))
+                                            @method("put")
+                                        @endif
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
@@ -442,13 +445,13 @@
                 url: '{{ route('events.getEvents', $user->id) }}',
             };
         @elseif(isset($event))
-
             var date = "{{ explode(' ', $event->start)[0] }}"
             var startTime = ConvertTimeBack("{{ explode(' ', $event->start)[1] }}")
             var endTime = ConvertTimeBack("{{ explode(' ', $event->end)[1] }}")
             $("#date").val(date);
             $("#start").val(startTime);
             $("#end").val(endTime);
+            $("#addEventForm").attr('action', "{{ url('/') }}" + '/events/{{ $event->id }}')
             $(".submit-btn").text("{{ __('words.edit') }}")
             $(".submit-btn").removeAttr("disabled");
             var newOption = new Option('{{ $event->user->text }}', {{ $event->user->id }}, true, true);
@@ -767,7 +770,10 @@
             if(parseInt(hour) > 12){
                 hour = parseInt(hour) - 12;
                 suffix = 'PM';
-            }else{
+            }else if(parseInt(hour) == 12){
+                suffix = 'PM';
+            }
+            else{
                 suffix = 'AM'
             }
             let final_time = hour + ':' + min + ' ' + suffix;

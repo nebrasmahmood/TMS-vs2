@@ -86,80 +86,11 @@
                     <li class="">
                         <a href="{{ route('jobs.weekJobsIndex') }}"> <i class="menu-icon fa fa-calendar-week"></i>{{ __("words.Week Jobs") }}</a>
                     </li>
-                    <li class="">
-                        <a href="{{ route('jobs.dayJobs') }}"> <i class="menu-icon fa fa-calendar-day"></i>{{ __("words.daily Jobs") }}</a>
-                    </li>
+{{--                    <li class="">--}}
+{{--                        <a href="{{ route('jobs.dayJobs') }}"> <i class="menu-icon fa fa-calendar-day"></i>{{ __("words.daily Jobs") }}</a>--}}
+{{--                    </li>--}}
                 @endif
-{{--                <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->--}}
-{{--                <li class="menu-item-has-children dropdown">--}}
-{{--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Components</a>--}}
-{{--                    <ul class="sub-menu children dropdown-menu">--}}
-{{--                        <li><i class="fa fa-puzzle-piece"></i><a href="">Buttons</a></li>--}}
-{{--                        <li><i class="fa fa-id-badge"></i><a href="">Badges</a></li>--}}
-{{--                        <li><i class="fa fa-bars"></i><a href="">Tabs</a></li>--}}
-{{--                        <li><i class="fa fa-share-square-o"></i><a href="">Social Buttons</a></li>--}}
-{{--                        <li><i class="fa fa-id-card-o"></i><a href="">Cards</a></li>--}}
-{{--                        <li><i class="fa fa-exclamation-triangle"></i><a href="">Alerts</a></li>--}}
-{{--                        <li><i class="fa fa-spinner"></i><a href="">Progress Bars</a></li>--}}
-{{--                        <li><i class="fa fa-fire"></i><a href="">Modals</a></li>--}}
-{{--                        <li><i class="fa fa-book"></i><a href="">Switches</a></li>--}}
-{{--                        <li><i class="fa fa-th"></i><a href="">Grids</a></li>--}}
-{{--                        <li><i class="fa fa-file-word-o"></i><a href="">Typography</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-{{--                <li class="menu-item-has-children dropdown">--}}
-{{--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>--}}
-{{--                    <ul class="sub-menu children dropdown-menu">--}}
-{{--                        <li><i class="fa fa-table"></i><a href="">Basic Table</a></li>--}}
-{{--                        <li><i class="fa fa-table"></i><a href="">Data Table</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-{{--                <li class="menu-item-has-children dropdown">--}}
-{{--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>--}}
-{{--                    <ul class="sub-menu children dropdown-menu">--}}
-{{--                        <li><i class="menu-icon fa fa-th"></i><a href="">Basic Form</a></li>--}}
-{{--                        <li><i class="menu-icon fa fa-th"></i><a href="">Advanced Form</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-
-{{--                <h3 class="menu-title">Icons</h3><!-- /.menu-title -->--}}
-
-{{--                <li class="menu-item-has-children dropdown">--}}
-{{--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>--}}
-{{--                    <ul class="sub-menu children dropdown-menu">--}}
-{{--                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="">Font Awesome</a></li>--}}
-{{--                        <li><i class="menu-icon ti-themify-logo"></i><a href="">Themefy Icons</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href=""> <i class="menu-icon ti-email"></i>Widgets </a>--}}
-{{--                </li>--}}
-{{--                <li class="menu-item-has-children dropdown">--}}
-{{--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>--}}
-{{--                    <ul class="sub-menu children dropdown-menu">--}}
-{{--                        <li><i class="menu-icon fa fa-line-chart"></i><a href="">Chart JS</a></li>--}}
-{{--                        <li><i class="menu-icon fa fa-area-chart"></i><a href="">Flot Chart</a></li>--}}
-{{--                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="">Peity Chart</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-
-{{--                <li class="menu-item-has-children dropdown">--}}
-{{--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>--}}
-{{--                    <ul class="sub-menu children dropdown-menu">--}}
-{{--                        <li><i class="menu-icon fa fa-map-o"></i><a href="">Google Maps</a></li>--}}
-{{--                        <li><i class="menu-icon fa fa-street-view"></i><a href="">Vector Maps</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-{{--                <h3 class="menu-title">Extras</h3><!-- /.menu-title -->--}}
-{{--                <li class="menu-item-has-children dropdown">--}}
-{{--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>--}}
-{{--                    <ul class="sub-menu children dropdown-menu">--}}
-{{--                        <li><i class="menu-icon fa fa-sign-in"></i><a href="">Login</a></li>--}}
-{{--                        <li><i class="menu-icon fa fa-sign-in"></i><a href="">Register</a></li>--}}
-{{--                        <li><i class="menu-icon fa fa-paper-plane"></i><a href="">Forget Pass</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
             </ul>
-        </div><!-- /.navbar-collapse -->
+        </div>
     </nav>
 </aside>

@@ -33,14 +33,15 @@ class CreateEventRequest extends FormRequest
             'start'=>'required|date_format:g:i A',
             'end'=>'required|date_format:g:i A',
             'stopsNum'=>'required|numeric',
-            'user_id' => 'required|numeric',
         ];
     }
 
     protected function prepareForValidation()
     {
-        $this->merge([
-            'user_id'=> auth()->id(),
-        ]);
+        if($this->isMethod('post')){
+            $this->merge([
+                'user_id'=> auth()->id(),
+            ]);
+        }
     }
 }

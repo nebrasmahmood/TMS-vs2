@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ asset("assets/css/index-pages.css") }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.15/dist/sweetalert2.min.css">
     <style>
+        @if(auth()->user()->role != 0)
         .card-group > .card{
             border: 0px;
             background-color: transparent;
@@ -47,6 +48,22 @@
             direction: ltr;
             min-height: calc(2*21.56px);
         }
+        @else
+            th{
+            background-color: #02a4e1 !important;
+            color: white;
+        }
+        .h3, h3 {
+            font-size: 1.3rem;
+            text-align: left;
+        }
+        #no-jobs-div{
+            padding: 6rem 0;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+        @endif
     </style>
 @endsection
 @section('content')
@@ -62,70 +79,70 @@
     </div>
     <!-- breadcrumbs -->
     <div class="container-fluid">
-        <div class="row m-0">
-            <div class="col-sm-12">
-                <div class="card-group">
-                    <div class="card col-md-3 col-sm-6">
-                        <div class="card-body bg-flat-color-2">
-                            <div class="h1 text-muted text-right">
-                                <i class="fa fa-users text-light"></i>
-                            </div>
-                            <div>
-                                <div class="h4 mb-0 text-light">
-                                    <span class="count">{{ $usersCount }}</span>
-                                </div>
-                                <small class="text-uppercase font-weight-bold text-light">Users</small>
-                                <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card col-md-3 col-sm-6">
-                        <div class="card-body bg-flat-color-3">
-                            <div class="h1 text-right">
-                                <i class="fa fa-map-marked-alt text-light"></i>
-                            </div>
-                            <div>
-                                <div class="h4 mb-0 text-light">
-                                    <span class="count">{{ $placesCount }}</span>
-                                </div>
-                                <small class="text-light text-uppercase font-weight-bold">Places</small>
-                                <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card col-md-3 col-sm-6">
-                        <div class="card-body bg-flat-color-5">
-                            <div class="h1 text-right text-light">
-                                <i class="fa fa-pie-chart"></i>
-                            </div>
-                            <div>
-                                <div class="h4 mb-0 text-light">
-                                    <span class="count">{{ $categoriesCount }}</span>
-                                </div>
-                                <small class="text-uppercase font-weight-bold text-light">Categories</small>
-                                <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card col-md-3 col-sm-6">
-                        <div class="card-body bg-flat-color-4">
-                            <div class="h1 text-light text-right">
-                                <i class="fa fa-file-alt"></i>
-                            </div>
-                            <div>
-                                <div class="h4 mb-0 text-light">
-                                    <span class="count">{{ $postsCount }}</span>
-                                </div>
-                                <small class="text-light text-uppercase font-weight-bold">Posts</small>
-                                <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
         @if(auth()->user()->role != 0)
+            <div class="row m-0">
+                <div class="col-sm-12">
+                    <div class="card-group">
+                        <div class="card col-md-3 col-sm-6">
+                            <div class="card-body bg-flat-color-2">
+                                <div class="h1 text-muted text-right">
+                                    <i class="fa fa-users text-light"></i>
+                                </div>
+                                <div>
+                                    <div class="h4 mb-0 text-light">
+                                        <span class="count">{{ $usersCount }}</span>
+                                    </div>
+                                    <small class="text-uppercase font-weight-bold text-light">Users</small>
+                                    <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card col-md-3 col-sm-6">
+                            <div class="card-body bg-flat-color-3">
+                                <div class="h1 text-right">
+                                    <i class="fa fa-map-marked-alt text-light"></i>
+                                </div>
+                                <div>
+                                    <div class="h4 mb-0 text-light">
+                                        <span class="count">{{ $placesCount }}</span>
+                                    </div>
+                                    <small class="text-light text-uppercase font-weight-bold">Places</small>
+                                    <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card col-md-3 col-sm-6">
+                            <div class="card-body bg-flat-color-5">
+                                <div class="h1 text-right text-light">
+                                    <i class="fa fa-pie-chart"></i>
+                                </div>
+                                <div>
+                                    <div class="h4 mb-0 text-light">
+                                        <span class="count">{{ $categoriesCount }}</span>
+                                    </div>
+                                    <small class="text-uppercase font-weight-bold text-light">Categories</small>
+                                    <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card col-md-3 col-sm-6">
+                            <div class="card-body bg-flat-color-4">
+                                <div class="h1 text-light text-right">
+                                    <i class="fa fa-file-alt"></i>
+                                </div>
+                                <div>
+                                    <div class="h4 mb-0 text-light">
+                                        <span class="count">{{ $postsCount }}</span>
+                                    </div>
+                                    <small class="text-light text-uppercase font-weight-bold">Posts</small>
+                                    <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             <div class="row m-0 mt-5">
                 <div class="col-sm-12">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -304,6 +321,56 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+                                    @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @else
+            <div class="row m-0">
+                <div class="col-lg-12 table-card">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Jobs Of Day {{ date_format(date_create(), 'l') }} - {{ date('Y-m-d') }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <tbody>
+                                    @if (isset($job))
+                                        <tr>
+                                            <th scope="row">{{ __('words.place') }}</th>
+                                            <td>{{ $job->place->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{{ __('words.busNo') }}</th>
+                                            <td>{{ $job->user->busNo ?? '' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{{ __('words.another_stops_no') }}</th>
+                                            <td>{{ $job->AnotherstopsNo }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{{ __('words.cube_no') }}</th>
+                                            <td>{{ $job->cube_no }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{{ __('words.percentage') }}</th>
+                                            <td>{{ $job->percentage }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{{ __('words.notes') }}</th>
+                                            <td>{{ $job->notes }}</td>
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <td>
+                                                <div id="no-jobs-div">No Jobs For Today</div>
+                                            </td>
+                                        </tr>
                                     @endif
                                     </tbody>
                                 </table>

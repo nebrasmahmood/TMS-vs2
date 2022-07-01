@@ -163,19 +163,21 @@
                             @forelse ($posts as $post)
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="card">
-                                        <img class="card-img-top" src="{{ asset($post->post_img) }}" alt="Post image">
+                                        <img class="card-img-top" src="{{ $post->post_img ? asset($post->post_img) : asset('images/no-image.jpg') }}" alt="Post image">
                                         <div class="card-body">
                                             <button type="button" class="btn dots-btn dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference{{ $post->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,0" data-reference="self">
                                                 <i class="fa fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuReference{{ $post->id }}">
                                                 <a class="dropdown-item show-btn text-success" href="{{ route('posts.show', $post->id) }}"><i class="fas fa-eye"></i> {{ __("words.show") }}</a>
+                                                @if(auth()->user()->role != 0)
                                                 <a class="dropdown-item edit-btn text-primary" href="{{ route('posts.edit', $post->id) }}"><i class="fas fa-edit"></i> {{ __("words.edit") }}</a>
                                                 <form method="post" action="{{ route('posts.destroy', $post->id) }}">
                                                     @csrf
                                                     @method('delete')
                                                     <a class="dropdown-item delete-btn text-danger" onclick="$(this).closest('form').submit()"><i class="far fa-trash-alt text-danger"></i> {{ __("words.delete") }}</a>
                                                 </form>
+                                                @endif
                                             </div>
                                             <h5 class="card-title">{{ $post->title }}</h5>
                                             <div class="card-text">

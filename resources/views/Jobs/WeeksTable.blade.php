@@ -38,6 +38,7 @@
         }
         table td{
             position: relative;
+            min-width: 60px;
         }
         table td > span.busNumber{
             position: absolute;
@@ -48,7 +49,7 @@
         }
 
         .table-responsive::-webkit-scrollbar {
-            width: 16px;
+            width: 14px;
         }
         .table-responsive::-webkit-scrollbar-track {
             background: #86c65161;
@@ -64,6 +65,47 @@
         .invalid-feedback {
             display: block;
         }
+        body.open .table-responsive{
+            width: calc(100vw - 88px);
+            transition: all 1s cubic-bezier(0,1.4,1,.45);
+        }
+        body:not(.open) .table-responsive{
+            width: calc(100vw - 298px);
+            transition: all 1s cubic-bezier(0,1.4,1,.45);
+        }
+        body:not(.open) aside{
+            width: 280px !important;
+            transition: all 1s cubic-bezier(0,1.4,1,.45);
+        }
+
+        @media only screen and (max-width: 991.5px){
+            .pl-0-md{
+                padding-left: 0px !important;
+            }
+            .pr-0-md{
+                padding-right: 0px !important;
+            }
+        }
+        @media only screen and (max-width: 767.5px){
+            .pl-15-sm{
+                padding-left: 15px !important;
+            }
+            .pr-15-sm{
+                padding-right: 15px !important;
+            }
+        }
+        .table tbody th, .table .thead th:first-child {
+            text-align: inherit;
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background: white;
+        }
+        .table thead th:first-child {
+            z-index: 3;
+            left: 0;
+            background: #02a4e1;
+        }
     </style>
 @endsection
 @section('content')
@@ -73,34 +115,30 @@
                 <span>{{ $error }}</span>
             @endforeach
             <div class="col-12 pr-0">
+                <form class="row m-0">
+                    <div class="col-lg-4 col-md-6 pl-0 pl-15-sm">
+                        <div class="form-group">
+                            <label for="startDate" class="form-control-label">Start Date<span class="d-inline text-muted">(YYYY-MM-DD)</span></label>
+                            <input type="text" id="startDate" name="from" value="{{ request()->query('from') ?? "" }}" placeholder="Enter start date.." class="form-control datepicker is-valid @error('startDate')is-invalid @enderror" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 pr-15-sm">
+                        <div class="form-group">
+                            <label for="endDate" class="form-control-label">End Date<span class="d-inline text-muted">(YYYY-MM-DD)</span></label>
+                            <input type="text" id="endDate" name="to" value="{{ request()->query('to') ?? "" }}" placeholder="Enter end date.." class="form-control datepicker is-valid @error('endDate')is-invalid @enderror" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 pl-0-md pl-15-sm">
+                        <div class="form-group">
+                            <label for="NumOfWeeks" class="form-control-label">Number of weeks</label>
+                            <input type="number" id="NumOfWeeks" min="1" max="53" name="NumOfWeeks" value="{{ request()->query('NumOfWeeks') ?? "" }}" placeholder="Enter number of weeks.." class="form-control is-valid @error('NumberOfWeeks')is-invalid @enderror">
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-md-6 pr-15-sm d-flex justify-content-center align-items-end mb-3">
+                        <button type="submit" id="search-btn" class="btn btn-success w-100" style="border-radius: 0.25rem;">Search</button>
+                    </div>
+                </form>
                 <div class="table-responsive pr-3">
-                    <form class="row m-0">
-                        <div class="col-11 p-0 m-0">
-                            <div class="row p-0 m-0">
-                                <div class="col-4 pl-0">
-                                    <div class="form-group">
-                                        <label for="startDate" class="form-control-label">Start Date<span class="d-inline text-muted">(YYYY-MM-DD)</span></label>
-                                        <input type="text" id="startDate" name="from" value="{{ request()->query('from') ?? "" }}" placeholder="Enter start date.." class="form-control datepicker is-valid @error('startDate')is-invalid @enderror" autocomplete="off">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="endDate" class="form-control-label">End Date<span class="d-inline text-muted">(YYYY-MM-DD)</span></label>
-                                        <input type="text" id="endDate" name="to" value="{{ request()->query('to') ?? "" }}" placeholder="Enter end date.." class="form-control datepicker is-valid @error('endDate')is-invalid @enderror" autocomplete="off">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="NumberOfWeeks" class="form-control-label">Number of weeks</label>
-                                        <input type="number" id="NumOfWeeks" min="1" max="53" name="NumOfWeeks" value="{{ request()->query('NumOfWeeks') ?? "" }}" placeholder="Enter number of weeks.." class="form-control is-valid @error('NumberOfWeeks')is-invalid @enderror">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-1 pr-0 d-flex justify-content-center align-items-end mb-3">
-                            <button type="submit" id="search-btn" class="btn btn-success w-100" style="border-radius: 0.25rem;">Search</button>
-                        </div>
-                    </form>
                     <table class="table table-bordered mb-0">
                         <thead class="table-head">
                         <tr>
@@ -344,6 +382,7 @@
             $(".table-responsive").css("height", $(window).height() - $(".table-responsive").offset().top )
         })
         $(".table-responsive").css("height", $(window).height() - $(".table-responsive").offset().top)
+        // $(".table-responsive").css("width",  'calc(100vw - 85px)');
         innerArray = {}
         var valueGroups = $(".table tbody tr:not(.colspan)").filter(function(index){
             users=[]
