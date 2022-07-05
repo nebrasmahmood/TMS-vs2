@@ -15,7 +15,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __('words.Uploaded_files') }}</h1>
+                    <h1>{{ __('nl-words.Uploaded_files') }}</h1>
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('uploadfiles.selectUsers') }}">{{ __('words.selectUsers') }}</a>
+                            <a href="{{ route('uploadfiles.selectUsers') }}">{{ __('nl-words.selectUsers') }}</a>
                         </li>
                     </ol>
                 </div>
@@ -46,9 +46,9 @@
                         <thead>
                         <tr class="table-head">
                             <th scope="col">#</th>
-                            <th scope="col">{{ __('words.firstName') }}</th>
-                            <th scope="col">{{ __('words.lastName') }}</th>
-                            <th scope="col">{{ __('words.upload_file') }}</th>
+                            <th scope="col">{{ __('nl-words.firstName') }}</th>
+                            <th scope="col">{{ __('nl-words.lastName') }}</th>
+                            <th scope="col">{{ __('nl-words.upload_file') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -60,7 +60,7 @@
                                     <td>{{ $user->lname }}</td>
                                     <td>
                                         <a href="{{ route('uploadfiles.uploadTouser', $user->id) }}" class="btn btn-primary" role="button">
-                                            <i class="fa fa-file-arrow-up text-white"></i> {{ __('words.upload_file') }}
+                                            <i class="fa fa-file-arrow-up text-white"></i> {{ __('nl-words.upload_file') }}
                                         </a>
                                     </td>
                                 </tr>

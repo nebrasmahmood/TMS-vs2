@@ -106,7 +106,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __('words.posts') }}</h1>
+                    <h1>{{ __('nl-words.posts') }}</h1>
                 </div>
             </div>
         </div>
@@ -118,10 +118,10 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li>
-                            <a href="{{ route('posts.index') }}">{{ __('words.posts') }}</a>
+                            <a href="{{ route('posts.index') }}">{{ __('nl-words.posts') }}</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('posts.edit', $post->id) }}">{{ __('words.edit_post') }}</a>
+                            <a href="{{ route('posts.edit', $post->id) }}">{{ __('nl-words.edit_post') }}</a>
                         </li>
                     </ol>
                 </div>
@@ -132,7 +132,7 @@
     <div class="col-lg-12 table-card">
         <div class="card">
             <div class="card-header">
-                <h1>{{ __('words.edit_post') }}</h1>
+                <h1>{{ __('nl-words.edit_post') }}</h1>
             </div>
             <div class="card-body card-block">
                 <form action="{{ route('posts.update', $post->id) }}" method="post" class="" enctype="multipart/form-data">
@@ -141,8 +141,8 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="title" class="form-control-label">{{ __('words.Title') }}</label>
-                                <input type="text" id="title" name="title" value="{{ old('title', $post->title) }}" placeholder="{{ __('words.Enter_post_title') }}" class="form-control is-valid @error('title')is-invalid @enderror">
+                                <label for="title" class="form-control-label">{{ __('nl-words.Title') }}</label>
+                                <input type="text" id="title" name="title" value="{{ old('title', $post->title) }}" placeholder="{{ __('nl-words.Enter_post_title') }}" class="form-control is-valid @error('title')is-invalid @enderror">
                             </div>
                             @error("title")
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -150,9 +150,9 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="category_id" class="form-control-label">{{ __('words.category') }}</label>
+                                <label for="category_id" class="form-control-label">{{ __('nl-words.category') }}</label>
                                 <select class="form-control categorySelect @error('category_id')is-invalid @enderror" id="category_id" name="category_id">
-                                    <option value="0" selected>{{ __('words.choose_category') }}</option>
+                                    <option value="0" selected>{{ __('nl-words.choose_category') }}</option>
                                 </select>
                             </div>
                             @error("category_id")
@@ -161,7 +161,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="upload-img-input" class="form-control-label">{{ __('words.post_image') }}</label>
+                                <label for="upload-img-input" class="form-control-label">{{ __('nl-words.post_image') }}</label>
                                 <div class="images @error("image") is-invalid @enderror">
                                     <input style="display: none !important;" id="upload-img-input" name="image" type="file" value="unchanged" accept="image/png, image/jpg, image/jpeg" />
                                     <input id="oldImgChanged" name="oldImgChanged" type="hidden" />
@@ -180,8 +180,8 @@
                         </div>
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
-                                <label for="details" class=" form-control-label">{{ __('words.details') }}<span class="text-muted">(optional)</span></label>
-                                <textarea id="details" name="details" placeholder="{{ __('words.details_placeholder') }}" class="form-control is-valid @error('details')is-invalid @enderror">{{ old('details', $post->details) }}</textarea>
+                                <label for="details" class=" form-control-label">{{ __('nl-words.details') }}<span class="text-muted">(optional)</span></label>
+                                <textarea id="details" name="details" placeholder="{{ __('nl-words.details_placeholder') }}" class="form-control is-valid @error('details')is-invalid @enderror">{{ old('details', $post->details) }}</textarea>
                                 <div id="character_count"></div>
                             </div>
                             @error("details")
@@ -190,7 +190,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group custom-switch">
-                                <label class="">{{ __('words.Status') }}</label>
+                                <label class="">{{ __('nl-words.Status') }}</label>
                                 <input type="checkbox" class="custom-switch-input checkbox" id="customSwitch1" name="status" value="1" {{ old('status', $post->status) == 1 ? 'checked' : '' }}>
                                 <label class="custom-switch-label" for="customSwitch1" data-before="Unactive"></label>
                             </div>
@@ -201,7 +201,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <button type="submit" class="btn btn-success submit-btn">{{ __('words.edit_post') }}</button>
+                            <button type="submit" class="btn btn-success submit-btn">{{ __('nl-words.edit_post') }}</button>
                         </div>
                     </div>
                 </form>

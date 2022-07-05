@@ -24,7 +24,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __('words.Jobs') }}</h1>
+                    <h1>{{ __('nl-words.Jobs') }}</h1>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('jobs.dayJobs') }}">{{ __('words.daily Jobs') }}</a>
+                            <a href="{{ route('jobs.dayJobs') }}">{{ __('nl-words.daily Jobs') }}</a>
                         </li>
                     </ol>
                 </div>
@@ -55,27 +55,27 @@
                         <tbody>
                         @if (isset($job))
                             <tr>
-                                <th scope="row">{{ __('words.place') }}</th>
+                                <th scope="row">{{ __('nl-words.place') }}</th>
                                 <td>{{ $job->place->name }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('words.busNo') }}</th>
+                                <th scope="row">{{ __('nl-words.busNo') }}</th>
                                 <td>{{ $job->user->busNo ?? '' }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('words.another_stops_no') }}</th>
+                                <th scope="row">{{ __('nl-words.another_stops_no') }}</th>
                                 <td>{{ $job->AnotherstopsNo }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('words.cube_no') }}</th>
+                                <th scope="row">{{ __('nl-words.cube_no') }}</th>
                                 <td>{{ $job->cube_no }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('words.percentage') }}</th>
+                                <th scope="row">{{ __('nl-words.percentage') }}</th>
                                 <td>{{ $job->percentage }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('words.notes') }}</th>
+                                <th scope="row">{{ __('nl-words.notes') }}</th>
                                 <td>{{ $job->notes }}</td>
                             </tr>
                         @else

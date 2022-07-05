@@ -218,7 +218,7 @@
                             <label for="user_id" class="col-sm-3 col-form-label">Username</label>
                             <div class="col-sm-9">
                                 <select class="form-control @error('user_id') is-invalid @enderror userSelect" id="user_id" name="user_id">
-                                    <option value="0" selected>{{ __('words.choose_username') }}</option>
+                                    <option value="0" selected>{{ __('nl-words.choose_username') }}</option>
                                 </select>
                                 @error("user_id")
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -229,7 +229,7 @@
                             <label for="bus_no" class="col-sm-3 col-form-label">Bus Number</label>
                             <div class="col-sm-9">
                                 <select class="form-control busSelect" id="bus_no" name="busNo" disabled>
-                                    <option value="0" selected>{{ __('words.choose_busNo') }}</option>
+                                    <option value="0" selected>{{ __('nl-words.choose_busNo') }}</option>
                                 </select>
                             </div>
                         </div>
@@ -282,7 +282,7 @@
                             <label for="helper_id" class="col-sm-3 col-form-label">Helper</label>
                             <div class="col-sm-9">
                                 <select class="form-control @error('helper_id') is-invalid @enderror helperSelect" id="helper_id" name="helper_id">
-                                    <option value="0" selected>{{ __('words.choose_helperName') }}</option>
+                                    <option value="0" selected>{{ __('nl-words.choose_helperName') }}</option>
                                 </select>
                                 @error('helper_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -324,7 +324,7 @@
                             <label for="absent_user_id" class="col-sm-3 col-form-label">Username</label>
                             <div class="col-sm-9">
                                 <select class="form-control @error('absent_user_id') is-invalid @enderror absentUser" id="absent_user_id" name="absent_user_id">
-                                    <option value="0" selected>{{ __('words.choose_username') }}</option>
+                                    <option value="0" selected>{{ __('nl-words.choose_username') }}</option>
                                 </select>
                                 @error("absent_user_id")
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -477,7 +477,7 @@
                             var newHelperOption = new Option(`${response.helper.text}`, response.helper.id, true, true);
                             $('.helperSelect').append(newHelperOption).trigger('change');
                         }else{
-                            var newHelperOption = new Option("{{ __('words.choose_helperName') }}", 0, true, true);
+                            var newHelperOption = new Option("{{ __('nl-words.choose_helperName') }}", 0, true, true);
                             $('.helperSelect').append(newHelperOption).trigger('change');
                         }
                         $("#addJobForm").attr('action', '{{ url('/') }}/jobs/update/' + response.id);
@@ -497,16 +497,16 @@
                 $('#PlaceIdInput').val(placeId);
                 $('#dateInput').val(date)
 
-                var newOption = new Option("{{ __('words.choose_username') }}", 0, true, true);
+                var newOption = new Option("{{ __('nl-words.choose_username') }}", 0, true, true);
                 $('.userSelect').append(newOption).trigger('change');
-                var newBusOption = new Option("{{ __('words.choose_busNo') }}", 0, true, true);
+                var newBusOption = new Option("{{ __('nl-words.choose_busNo') }}", 0, true, true);
                 $('.busSelect').append(newBusOption).trigger('change');
                 $("#stops_no").val('')
                 $("#AnotherstopsNo").val('')
                 $("#cube_no").val('')
                 $("#percentage").val('')
                 $("#notes").text('')
-                var newHelperOption = new Option("{{ __('words.choose_helperName') }}", 0, true, true);
+                var newHelperOption = new Option("{{ __('nl-words.choose_helperName') }}", 0, true, true);
                 $('.helperSelect').append(newHelperOption).trigger('change');
                 $("#addJobForm").attr('action', '{{ route('jobs.store') }}');
                 $('#_method').val('')
@@ -557,7 +557,7 @@
                 });
             }
             else{
-                var newOption = new Option("{{ __('words.choose_username') }}", 0, true, true);
+                var newOption = new Option("{{ __('nl-words.choose_username') }}", 0, true, true);
                 $('.absentUser').append(newOption).trigger('change');
                 $("#addAbsentForm").attr('action', '{{ route('absencese.store') }}');
                 $('#absent_method').val('')
@@ -571,7 +571,7 @@
         })
 
         $('.userSelect').select2({
-            placeholder: "{{ __('words.choose_username') }}",
+            placeholder: "{{ __('nl-words.choose_username') }}",
             language: "ar",
             searchInputPlaceholder: 'Enter username..',
             width: '100%',
@@ -603,7 +603,7 @@
         });
 
         $('.absentUser').select2({
-            placeholder: "{{ __('words.choose_username') }}",
+            placeholder: "{{ __('nl-words.choose_username') }}",
             searchInputPlaceholder: 'Enter username..',
             width: '100%',
             @error('absent_user_id')
@@ -672,7 +672,7 @@
         });
 
         $('.busSelect').select2({
-            placeholder: "{{ __('words.choose_busNo') }}",
+            placeholder: "{{ __('nl-words.choose_busNo') }}",
             searchInputPlaceholder: 'Enter Bus Number..',
             width: '100%',
             templateResult: formatBus,
@@ -728,7 +728,7 @@
         });
 
         $('.helperSelect').select2({
-            placeholder: "{{ __('words.choose_username') }}",
+            placeholder: "{{ __('nl-words.choose_username') }}",
             language: "ar",
             searchInputPlaceholder: 'Enter username..',
             @error('helper_id')

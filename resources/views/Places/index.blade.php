@@ -10,7 +10,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>Places</h1>
+                    <h1>{{ __("nl-words.place") }}</h1>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('places.index') }}">Places</a>
+                            <a href="{{ route('places.index') }}">{{ __("nl-words.Places") }}</a>
                         </li>
                     </ol>
                 </div>
@@ -33,7 +33,7 @@
     <div class="col-lg-12 table-card">
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('places.create') }}" class="btn btn-success text-white" role="button">Add Place</a>
+                <a href="{{ route('places.create') }}" class="btn btn-success text-white" role="button">{{ __("nl-words.Add Place") }}</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -41,9 +41,9 @@
                         <thead>
                         <tr class="table-head">
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Number</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">{{ __("nl-words.Name") }}</th>
+                            <th scope="col">{{ __("nl-words.Number") }}</th>
+                            <th scope="col">{{ __("nl-words.Actions") }}</th>
                         </tr>
                         </thead>
                         <tbody>

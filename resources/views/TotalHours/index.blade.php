@@ -21,7 +21,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __('words.Total Hours') }}</h1>
+                    <h1>{{ __('nl-words.Total Hours') }}</h1>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('totalHours.index') }}">{{ __("words.Total Hours") }}</a>
+                            <a href="{{ route('totalHours.index') }}">{{ __("nl-words.Total Hours") }}</a>
                         </li>
                     </ol>
                 </div>
@@ -44,7 +44,7 @@
     <div class="col-lg-12 table-card">
         <div class="card">
             <div class="card-header">
-                <h1>{{ __('words.Total Hours') }}</h1>
+                <h1>{{ __('nl-words.Total Hours') }}</h1>
             </div>
             <div class="card-body card-block">
                 <form action="{{ route('totalHours.getHours') }}" method="post" class="">
@@ -54,9 +54,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="user_id" class="col-form-label">Username</label>
+                                        <label for="user_id" class="col-form-label">{{ __('nl-words.user_fullName') }}</label>
                                         <select class="form-control userSelect" id="user_id" name="user_id">
-                                            <option value="0" selected>{{ __('words.choose_username') }}</option>
+                                            <option value="0" selected>{{ __('nl-words.choose_username') }}</option>
                                         </select>
                                     </div>
                                     @error("user_id")
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="week_num" class="col-form-label">Week Number</label>
+                                        <label for="week_num" class="col-form-label">{{ __('nl-words.Week Number') }}</label>
                                         <select class="form-control sumoSelect is-valid" id="week_num" name="week_num">
                                             @for($i = 1; $i < 54; $i++)
                                                 <option class="option{{ $i }}" value="{{ $i }}" >{{ $i }}</option>
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="col-md-1" style="display: flex;justify-content: center;align-items: end;">
-                            <button type="submit" class="btn btn-success submit-btn">{{ __("words.search") }}</button>
+                            <button type="submit" class="btn btn-success submit-btn">{{ __("nl-words.search") }}</button>
                         </div>
                     </div>
                 </form>
@@ -89,8 +89,8 @@
                     <table class="table table-striped">
                         <thead>
                         <tr class="table-head">
-                            <th scope="col">{{ __('words.User') }}</th>
-                            <th scope="col">{{ __('words.Total Hours') }}</th>
+                            <th scope="col">{{ __('nl-words.User') }}</th>
+                            <th scope="col">{{ __('nl-words.Total Hours') }}</th>
                         </tr>
                         </thead>
                         <tbody>

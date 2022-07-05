@@ -129,7 +129,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __('words.posts') }}</h1>
+                    <h1>{{ __('nl-words.posts') }}</h1>
                 </div>
             </div>
         </div>
@@ -141,7 +141,7 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('posts.index') }}">{{ __('words.posts') }}</a>
+                            <a href="{{ route('posts.index') }}">{{ __('nl-words.posts') }}</a>
                         </li>
                     </ol>
                 </div>
@@ -153,7 +153,7 @@
         <div class="card">
             @if(auth()->user()->role != 0)
             <div class="card-header">
-                <a href="{{ route('posts.create') }}" class="btn btn-success text-white" role="button">{{ __('words.Add post') }}</a>
+                <a href="{{ route('posts.create') }}" class="btn btn-success text-white" role="button">{{ __('nl-words.Add post') }}</a>
             </div>
             @endif
             <div class="card-body container-fluid">
@@ -169,13 +169,13 @@
                                                 <i class="fa fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuReference{{ $post->id }}">
-                                                <a class="dropdown-item show-btn text-success" href="{{ route('posts.show', $post->id) }}"><i class="fas fa-eye"></i> {{ __("words.show") }}</a>
+                                                <a class="dropdown-item show-btn text-success" href="{{ route('posts.show', $post->id) }}"><i class="fas fa-eye"></i> {{ __("nl-words.show") }}</a>
                                                 @if(auth()->user()->role != 0)
-                                                <a class="dropdown-item edit-btn text-primary" href="{{ route('posts.edit', $post->id) }}"><i class="fas fa-edit"></i> {{ __("words.edit") }}</a>
+                                                <a class="dropdown-item edit-btn text-primary" href="{{ route('posts.edit', $post->id) }}"><i class="fas fa-edit"></i> {{ __("nl-words.edit") }}</a>
                                                 <form method="post" action="{{ route('posts.destroy', $post->id) }}">
                                                     @csrf
                                                     @method('delete')
-                                                    <a class="dropdown-item delete-btn text-danger" onclick="$(this).closest('form').submit()"><i class="far fa-trash-alt text-danger"></i> {{ __("words.delete") }}</a>
+                                                    <a class="dropdown-item delete-btn text-danger" onclick="$(this).closest('form').submit()"><i class="far fa-trash-alt text-danger"></i> {{ __("nl-words.delete") }}</a>
                                                 </form>
                                                 @endif
                                             </div>

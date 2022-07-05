@@ -136,7 +136,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __('words.Events') }}</h1>
+                    <h1>{{ __('nl-words.Events') }}</h1>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('events.index') }}">{{ __('words.Events') }}</a>
+                            <a href="{{ route('events.index') }}">{{ __('nl-words.Events') }}</a>
                         </li>
                     </ol>
                 </div>
@@ -169,9 +169,9 @@
                                     <div class="row searchRow">
                                         <div class="col-11 pl-0">
                                             <div class="form-group">
-                                                <label for="user_id" class="form-control-label">{{ __('words.User') }}</label>
+                                                <label for="user_id" class="form-control-label">{{ __('nl-words.User') }}</label>
                                                 <select class="form-control userSelect @error('user_id')is-invalid @enderror" id="user_id" name="user_id">
-                                                    <option value="0" selected>{{ __('words.choose_username') }}</option>
+                                                    <option value="0" selected>{{ __('nl-words.choose_username') }}</option>
                                                 </select>
                                             </div>
                                             @error("user_id")
@@ -179,7 +179,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-1">
-                                            <button class="btn btn-outline-primary search-btn" type="submit">{{ __("words.search") }}</button>
+                                            <button class="btn btn-outline-primary search-btn" type="submit">{{ __("nl-words.search") }}</button>
                                         </div>
                                     </div>
                                 </form>
@@ -203,8 +203,8 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="title" class="form-control-label">{{ __('words.Title') }}</label>
-                                                    <input type="text" name="title" placeholder="{{ __('words.title_placeholder') }}" class="form-control is-valid @error('title')is-invalid @enderror" id="title" @if(isset($event)) value="{{ old('title', $event->title) }}" @else value="{{ old('title') }}" @endif required>
+                                                    <label for="title" class="form-control-label">{{ __('nl-words.Title') }}</label>
+                                                    <input type="text" name="title" placeholder="{{ __('nl-words.title_placeholder') }}" class="form-control is-valid @error('title')is-invalid @enderror" id="title" @if(isset($event)) value="{{ old('title', $event->title) }}" @else value="{{ old('title') }}" @endif required>
                                                 </div>
                                                 @error("title")
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -212,9 +212,9 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="place_id" class="form-control-label">{{ __('words.Place') }}</label>
+                                                    <label for="place_id" class="form-control-label">{{ __('nl-words.Place') }}</label>
                                                     <select class="form-control placeSelect @error('place_id')is-invalid @enderror" id="form_place_id" name="place_id">
-                                                        <option value="0" selected>{{ __('words.choose_place') }}</option>
+                                                        <option value="0" selected>{{ __('nl-words.choose_place') }}</option>
                                                     </select>
                                                 </div>
                                                 @error("place_id")
@@ -223,9 +223,9 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="busNo" class="form-control-label">{{ __('words.busNo') }}</label>
+                                                    <label for="busNo" class="form-control-label">{{ __('nl-words.busNo') }}</label>
                                                     <select class="form-control busSelect @error('busNo')is-invalid @enderror" id="form_busNo" name="busNo">
-                                                        <option value="0" selected>{{ __('words.choose_busNo') }}</option>
+                                                        <option value="0" selected>{{ __('nl-words.choose_busNo') }}</option>
                                                     </select>
                                                 </div>
                                                 @error("busNo")
@@ -234,8 +234,8 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="start_km" class="form-control-label">{{ __('words.start_km') }}</label>
-                                                    <input type="number" @if(isset($event)) value="{{ old('start_km', $event->start_km) }}" @endif placeholder="{{ __('words.enter_start_km') }}" class="form-control is-valid @error('start_km')is-invalid @enderror" id="start_km" name="start_km">
+                                                    <label for="start_km" class="form-control-label">{{ __('nl-words.start_km') }}</label>
+                                                    <input type="number" @if(isset($event)) value="{{ old('start_km', $event->start_km) }}" @endif placeholder="{{ __('nl-words.enter_start_km') }}" class="form-control is-valid @error('start_km')is-invalid @enderror" id="start_km" name="start_km">
                                                 </div>
                                                 @error("start_km")
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -243,8 +243,8 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="end_km" class="form-control-label">{{ __('words.end_km') }}</label>
-                                                    <input type="number" @if(isset($event)) value="{{ old('end_km', $event->end_km) }}" @endif placeholder="{{ __('words.enter_end_km') }}" class="form-control is-valid @error('end_km')is-invalid @enderror" id="end_km" name="end_km">
+                                                    <label for="end_km" class="form-control-label">{{ __('nl-words.end_km') }}</label>
+                                                    <input type="number" @if(isset($event)) value="{{ old('end_km', $event->end_km) }}" @endif placeholder="{{ __('nl-words.enter_end_km') }}" class="form-control is-valid @error('end_km')is-invalid @enderror" id="end_km" name="end_km">
                                                 </div>
                                                 @error("end_km")
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -252,7 +252,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="date" class="form-control-label">{{ __('words.Date') }}<span class="d-inline text-muted">(YYYY-MM-DD)</span></label>
+                                                    <label for="date" class="form-control-label">{{ __('nl-words.Date') }}<span class="d-inline text-muted">(YYYY-MM-DD)</span></label>
                                                     <input type="text" id="date" name="date" value="{{ old('date') }}" placeholder="Enter date.." class="form-control datepicker is-valid @error('date')is-invalid @enderror" autocomplete="off" required>
                                                 </div>
                                                 @error("date")
@@ -261,8 +261,8 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="start" class="form-control-label">{{ __('words.Start_time') }}<span class="d-inline text-muted">(HH:mm)</span></label>
-                                                    <input type="text" name="start" id="start" value="{{ old('start') }}" placeholder="{{ __('words.start_placeholder') }}"
+                                                    <label for="start" class="form-control-label">{{ __('nl-words.Start_time') }}<span class="d-inline text-muted">(HH:mm)</span></label>
+                                                    <input type="text" name="start" id="start" value="{{ old('start') }}" placeholder="{{ __('nl-words.start_placeholder') }}"
                                                            class="form-control is-valid time-input start-time" autocomplete="off" required>
                                                 </div>
                                                 @error("start")
@@ -271,8 +271,8 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="end" class="form-control-label">{{ __('words.End_time') }}<span class="d-inline text-muted">(HH:mm)</span></label>
-                                                    <input type="text" name="end" id="end" value="{{ old('end') }}" placeholder="{{ __('words.end_placeholder') }}"
+                                                    <label for="end" class="form-control-label">{{ __('nl-words.End_time') }}<span class="d-inline text-muted">(HH:mm)</span></label>
+                                                    <input type="text" name="end" id="end" value="{{ old('end') }}" placeholder="{{ __('nl-words.end_placeholder') }}"
                                                            class="form-control is-valid time-input end-time" autocomplete="off" required>
                                                 </div>
                                                 @error("end")
@@ -281,8 +281,8 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="stopsNum" class="form-control-label">{{ __('words.stopsNum') }}</label>
-                                                    <input type="number" @if(isset($event)) value="{{ old('stopsNum', $event->stopsNum) }}" @else value="{{ old('stopsNum') }}" @endif placeholder="{{ __('words.stopsNum_placeholder') }}" class="form-control is-valid @error('stopsNum')is-invalid @enderror" id="stopsNum" name="stopsNum">
+                                                    <label for="stopsNum" class="form-control-label">{{ __('nl-words.stopsNum') }}</label>
+                                                    <input type="number" @if(isset($event)) value="{{ old('stopsNum', $event->stopsNum) }}" @else value="{{ old('stopsNum') }}" @endif placeholder="{{ __('nl-words.stopsNum_placeholder') }}" class="form-control is-valid @error('stopsNum')is-invalid @enderror" id="stopsNum" name="stopsNum">
                                                 </div>
                                                 @error("stopsNum")
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -291,7 +291,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <button type="submit" class="btn btn-block btn-success submit-btn" {{ auth()->user()->role != 0 ? 'disabled' : '' }}>{{ __('words.save') }}</button>
+                                                <button type="submit" class="btn btn-block btn-success submit-btn" {{ auth()->user()->role != 0 ? 'disabled' : '' }}>{{ __('nl-words.save') }}</button>
                                             </div>
                                         </div>
                                     </form>
@@ -309,7 +309,7 @@
         <div class="modal-dialog modal-dialog-scrollable modal-md" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">{{ __('words.event_details') }}</h6>
+                    <h6 class="modal-title">{{ __('nl-words.event_details') }}</h6>
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
@@ -318,13 +318,13 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="title" class="form-control-label">{{ __('words.Title') }}</label>
+                                    <label for="title" class="form-control-label">{{ __('nl-words.Title') }}</label>
                                     <input type="text" class="form-control is-valid" id="title" disabled>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group placeDiv">
-                                    <label for="place_id" class="form-control-label">{{ __('words.Place') }}</label>
+                                    <label for="place_id" class="form-control-label">{{ __('nl-words.Place') }}</label>
                                     <select class="form-control placeSelect @error('place_id')is-invalid @enderror" id="place_id" disabled>
                                         <option id="placeOption" value="" selected></option>
                                     </select>
@@ -332,7 +332,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group busDiv">
-                                    <label for="busNo" class="form-control-label">{{ __('words.busNo') }}</label>
+                                    <label for="busNo" class="form-control-label">{{ __('nl-words.busNo') }}</label>
                                     <select class="form-control busSelect" id="busNo" disabled>
                                         <option value="" selected></option>
                                     </select>
@@ -340,39 +340,39 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="start_km" class="form-control-label">{{ __('words.start_km') }}</label>
+                                    <label for="start_km" class="form-control-label">{{ __('nl-words.start_km') }}</label>
                                     <input type="number" placeholder="" class="form-control is-valid" id="start_km" disabled>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="end_km" class="form-control-label">{{ __('words.end_km') }}</label>
+                                    <label for="end_km" class="form-control-label">{{ __('nl-words.end_km') }}</label>
                                     <input type="number" placeholder="" class="form-control is-valid" id="end_km" disabled>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="date" class="form-control-label">{{ __('words.Date') }}<span class="d-inline text-muted">(YYYY-MM-DD)</span></label>
+                                    <label for="date" class="form-control-label">{{ __('nl-words.Date') }}<span class="d-inline text-muted">(YYYY-MM-DD)</span></label>
                                     <input type="text" id="date" value="" placeholder="" class="form-control datepicker is-valid" autocomplete="off" disabled>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="start" class="form-control-label">{{ __('words.Start_time') }}<span class="d-inline text-muted">(HH:mm)</span></label>
+                                    <label for="start" class="form-control-label">{{ __('nl-words.Start_time') }}<span class="d-inline text-muted">(HH:mm)</span></label>
                                     <input type="text" id="start" placeholder=""
                                            class="form-control is-valid time-input start-time" autocomplete="off" disabled>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="end" class="form-control-label">{{ __('words.End_time') }}<span class="d-inline text-muted">(HH:mm)</span></label>
+                                    <label for="end" class="form-control-label">{{ __('nl-words.End_time') }}<span class="d-inline text-muted">(HH:mm)</span></label>
                                     <input type="text" id="end" placeholder=""
                                            class="form-control is-valid time-input end-time" autocomplete="off" disabled>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="stopsNum" class="form-control-label">{{ __('words.stopsNum') }}</label>
+                                    <label for="stopsNum" class="form-control-label">{{ __('nl-words.stopsNum') }}</label>
                                     <input type="number" placeholder="" class="form-control is-valid" id="stopsNum" disabled>
                                 </div>
                             </div>
@@ -389,7 +389,7 @@
                         </form>
                     @endif
                     <button class="btn ripple btn-success" aria-label="Close" data-dismiss="modal"
-                            type="button" id="submit_form">{{ __('words.Close') }}</button>
+                            type="button" id="submit_form">{{ __('nl-words.Close') }}</button>
                 </div>
             </div>
         </div>
@@ -409,7 +409,7 @@
         //     $("#start").val(date + " " + startTime);
         //     $("#end").val(date + " " + endTime);
         // });
-        window.days = ["{{ __('words.saturday') }}", "{{ __('words.sunday') }}", "{{ __('words.monday') }}", "{{ __('words.tuesday') }}", "{{ __('words.wednesday') }}", "{{ __('words.thersday') }}", "{{ __('words.friday') }}"];
+        window.days = ["{{ __('nl-words.saturday') }}", "{{ __('nl-words.sunday') }}", "{{ __('nl-words.monday') }}", "{{ __('nl-words.tuesday') }}", "{{ __('nl-words.wednesday') }}", "{{ __('nl-words.thersday') }}", "{{ __('nl-words.friday') }}"];
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.15/dist/sweetalert2.min.js"></script>
     <script src="{{ asset('assets/js/fullcalendar-main.min.js') }}"></script>
@@ -452,7 +452,7 @@
             $("#start").val(startTime);
             $("#end").val(endTime);
             $("#addEventForm").attr('action', "{{ url('/') }}" + '/events/{{ $event->id }}')
-            $(".submit-btn").text("{{ __('words.edit') }}")
+            $(".submit-btn").text("{{ __('nl-words.edit') }}")
             $(".submit-btn").removeAttr("disabled");
             var newOption = new Option('{{ $event->user->text }}', {{ $event->user->id }}, true, true);
             $('.userSelect').append(newOption).trigger('change');
@@ -547,7 +547,7 @@
                             var WillDeleteID = btn.closest('a').find('.event_id').val();
                             console.log(WillDeleteID);
                             swal({
-                                title: "{{ __('words.are_you_sure') }}",
+                                title: "{{ __('nl-words.are_you_sure') }}",
                                 text: "{{ __('words.delete_sweetAlert_text') }}",
                                 type: "warning",
                                 showCancelButton: true,
@@ -868,7 +868,7 @@
     </script>
     <script>
         $('.userSelect').select2({
-            placeholder: "{{ __('words.choose_username') }}",
+            placeholder: "{{ __('nl-words.choose_username') }}",
             language: "ar",
             searchInputPlaceholder: 'Enter username..',
             width: '100%',
@@ -892,7 +892,7 @@
             }
         });
         $('.placeSelect').select2({
-            placeholder: "{{ __('words.choose_place') }}",
+            placeholder: "{{ __('nl-words.choose_place') }}",
             searchInputPlaceholder: 'Enter Place Name..',
             @error('place_id')
             dropdownCssClass : 'error',
@@ -919,7 +919,7 @@
             }
         });
         $('.busSelect').select2({
-            placeholder: "{{ __('words.choose_busNo') }}",
+            placeholder: "{{ __('nl-words.choose_busNo') }}",
             searchInputPlaceholder: 'Enter Bus Number..',
             width: '100%',
             @error('busNo')

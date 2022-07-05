@@ -10,7 +10,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __("words.Users") }}</h1>
+                    <h1>{{ __("nl-words.Users") }}</h1>
                 </div>
             </div>
         </div>
@@ -19,10 +19,10 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li>
-                            <a href="{{ url('/') }}">{{ __('words.Home') }}</a>
+                            <a href="{{ url('/') }}">{{ __('nl-words.Home') }}</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('users.index') }}">{{ __("words.Users") }}</a>
+                            <a href="{{ route('users.index') }}">{{ __("nl-words.Users") }}</a>
                         </li>
                     </ol>
                 </div>
@@ -33,7 +33,7 @@
     <div class="col-lg-12 table-card">
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('users.create') }}" class="btn btn-success text-white" role="button">{{ __("words.Add User") }}</a>
+                <a href="{{ route('users.create') }}" class="btn btn-success text-white" role="button">{{ __("nl-words.Add User") }}</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -41,12 +41,12 @@
                         <thead>
                         <tr class="table-head">
                             <th scope="col">#</th>
-                            <th scope="col">{{ __("words.firstName") }}</th>
-                            <th scope="col">{{ __("words.lastName") }}</th>
-                            <th scope="col">{{ __("words.Email") }}</th>
-                            <th scope="col">{{ __("words.Role") }}</th>
-                            <th scope="col">{{ __("words.Bus Number") }}</th>
-                            <th scope="col">{{ __("words.Actions") }}</th>
+                            <th scope="col">{{ __("nl-words.firstName") }}</th>
+                            <th scope="col">{{ __("nl-words.lastName") }}</th>
+                            <th scope="col">{{ __("nl-words.Email") }}</th>
+                            <th scope="col">{{ __("nl-words.Role") }}</th>
+                            <th scope="col">{{ __("nl-words.Bus Number") }}</th>
+                            <th scope="col">{{ __("nl-words.Actions") }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -59,11 +59,11 @@
                                 <td>{{ $user->email }}</td>
                                 <td>
                                     @if($user->role == 2)
-                                        {{ __('words.super_admin') }}
+                                        {{ __('nl-words.super_admin') }}
                                     @elseif($user->role == 1)
-                                        {{ __('words.admin') }}
+                                        {{ __('nl-words.admin') }}
                                     @else
-                                        {{ __('words.user') }}
+                                        {{ __('nl-words.user') }}
                                     @endif
                                 </td>
                                 <td>{{ $user->busNo }}</td>

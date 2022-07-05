@@ -10,7 +10,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __('words.categories') }}</h1>
+                    <h1>{{ __('nl-words.categories') }}</h1>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('categories.index') }}">{{ __('words.categories') }}</a>
+                            <a href="{{ route('categories.index') }}">{{ __('nl-words.categories') }}</a>
                         </li>
                     </ol>
                 </div>
@@ -33,7 +33,7 @@
     <div class="col-lg-12 table-card">
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('categories.create') }}" class="btn btn-success text-white" role="button">{{ __('words.Add Category') }}</a>
+                <a href="{{ route('categories.create') }}" class="btn btn-success text-white" role="button">{{ __('nl-words.Add Category') }}</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -41,10 +41,10 @@
                         <thead>
                         <tr class="table-head">
                             <th scope="col">#</th>
-                            <th scope="col">{{ __("words.Name") }}</th>
-                            <th scope="col">{{ __("words.description") }}</th>
-                            <th scope="col">{{ __("words.Status") }}</th>
-                            <th scope="col">{{ __("words.Actions") }}</th>
+                            <th scope="col">{{ __("nl-words.Name") }}</th>
+                            <th scope="col">{{ __("nl-words.description") }}</th>
+                            <th scope="col">{{ __("nl-words.Status") }}</th>
+                            <th scope="col">{{ __("nl-words.Actions") }}</th>
                         </tr>
                         </thead>
                         <tbody>

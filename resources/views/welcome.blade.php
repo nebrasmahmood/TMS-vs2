@@ -92,7 +92,7 @@
                                     <div class="h4 mb-0 text-light">
                                         <span class="count">{{ $usersCount }}</span>
                                     </div>
-                                    <small class="text-uppercase font-weight-bold text-light">Users</small>
+                                    <small class="text-uppercase font-weight-bold text-light">{{ __('nl-words.Users') }}</small>
                                     <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                                     <div class="h4 mb-0 text-light">
                                         <span class="count">{{ $placesCount }}</span>
                                     </div>
-                                    <small class="text-light text-uppercase font-weight-bold">Places</small>
+                                    <small class="text-light text-uppercase font-weight-bold">{{ __('nl-words.Places') }}</small>
                                     <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                                     <div class="h4 mb-0 text-light">
                                         <span class="count">{{ $categoriesCount }}</span>
                                     </div>
-                                    <small class="text-uppercase font-weight-bold text-light">Categories</small>
+                                    <small class="text-uppercase font-weight-bold text-light">{{ __('nl-words.categories') }}</small>
                                     <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                                     <div class="h4 mb-0 text-light">
                                         <span class="count">{{ $postsCount }}</span>
                                     </div>
-                                    <small class="text-light text-uppercase font-weight-bold">Posts</small>
+                                    <small class="text-light text-uppercase font-weight-bold">{{ __('nl-words.posts') }}</small>
                                     <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
                                 </div>
                             </div>
@@ -147,16 +147,16 @@
                 <div class="col-sm-12">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="home" aria-selected="true">Recent Users</a>
+                            <a class="nav-link active" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="home" aria-selected="true">Recente {{ __('nl-words.Users') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="places-tab" data-toggle="tab" href="#places" role="tab" aria-controls="places" aria-selected="false">Recent Places</a>
+                            <a class="nav-link" id="places-tab" data-toggle="tab" href="#places" role="tab" aria-controls="places" aria-selected="false">Recente {{ __('nl-words.Places') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="cats-tab" data-toggle="tab" href="#cats" role="tab" aria-controls="cats" aria-selected="false">Recent Categories</a>
+                            <a class="nav-link" id="cats-tab" data-toggle="tab" href="#cats" role="tab" aria-controls="cats" aria-selected="false">Recente {{ __('nl-words.categories') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="false">Recent Posts</a>
+                            <a class="nav-link" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="false">Recente {{ __('nl-words.posts') }}</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -167,12 +167,12 @@
                                     <thead>
                                     <tr class="table-head">
                                         <th scope="col">#</th>
-                                        <th scope="col">{{ __("words.firstName") }}</th>
-                                        <th scope="col">{{ __("words.lastName") }}</th>
-                                        <th scope="col">{{ __("words.Email") }}</th>
-                                        <th scope="col">{{ __("words.Role") }}</th>
-                                        <th scope="col">{{ __("words.Bus Number") }}</th>
-                                        <th scope="col">{{ __("words.Actions") }}</th>
+                                        <th scope="col">{{ __("nl-words.firstName") }}</th>
+                                        <th scope="col">{{ __("nl-words.lastName") }}</th>
+                                        <th scope="col">{{ __("nl-words.Email") }}</th>
+                                        <th scope="col">{{ __("nl-words.Role") }}</th>
+                                        <th scope="col">{{ __("nl-words.Bus Number") }}</th>
+                                        <th scope="col">{{ __("nl-words.Actions") }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -185,11 +185,11 @@
                                                 <td>{{ $user->email }}</td>
                                                 <td>
                                                     @if($user->role == 2)
-                                                        {{ __('words.super_admin') }}
+                                                        {{ __('nl-words.super_admin') }}
                                                     @elseif($user->role == 1)
-                                                        {{ __('words.admin') }}
+                                                        {{ __('nl-words.admin') }}
                                                     @else
-                                                        {{ __('words.user') }}
+                                                        {{ __('nl-words.user') }}
                                                     @endif
                                                 </td>
                                                 <td>{{ $user->busNo }}</td>
@@ -217,9 +217,9 @@
                                     <thead>
                                     <tr class="table-head">
                                         <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Number</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope="col">{{ __("nl-words.Name") }}</th>
+                                        <th scope="col">{{ __("nl-words.Number") }}</th>
+                                        <th scope="col">{{ __("nl-words.Actions") }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -253,10 +253,10 @@
                                     <thead>
                                     <tr class="table-head">
                                         <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope="col">{{ __("nl-words.Name") }}</th>
+                                        <th scope="col">{{ __("nl-words.description") }}</th>
+                                        <th scope="col">{{ __("nl-words.Status") }}</th>
+                                        <th scope="col">{{ __("nl-words.Actions") }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -291,10 +291,10 @@
                                     <thead>
                                     <tr class="table-head">
                                         <th scope="col">#</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Details</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope="col">{{ __("nl-words.Title") }}</th>
+                                        <th scope="col">{{ __("nl-words.category") }}</th>
+                                        <th scope="col">{{ __("nl-words.details") }}</th>
+                                        <th scope="col">{{ __("nl-words.Actions") }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -342,27 +342,27 @@
                                     <tbody>
                                     @if (isset($job))
                                         <tr>
-                                            <th scope="row">{{ __('words.place') }}</th>
+                                            <th scope="row">{{ __('nl-words.place') }}</th>
                                             <td>{{ $job->place->name }}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">{{ __('words.busNo') }}</th>
+                                            <th scope="row">{{ __('nl-words.busNo') }}</th>
                                             <td>{{ $job->user->busNo ?? '' }}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">{{ __('words.another_stops_no') }}</th>
+                                            <th scope="row">{{ __('nl-words.another_stops_no') }}</th>
                                             <td>{{ $job->AnotherstopsNo }}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">{{ __('words.cube_no') }}</th>
+                                            <th scope="row">{{ __('nl-words.cube_no') }}</th>
                                             <td>{{ $job->cube_no }}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">{{ __('words.percentage') }}</th>
+                                            <th scope="row">{{ __('nl-words.percentage') }}</th>
                                             <td>{{ $job->percentage }}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">{{ __('words.notes') }}</th>
+                                            <th scope="row">{{ __('nl-words.notes') }}</th>
                                             <td>{{ $job->notes }}</td>
                                         </tr>
                                     @else
