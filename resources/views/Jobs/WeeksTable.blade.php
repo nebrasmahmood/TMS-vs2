@@ -147,10 +147,10 @@
                                 <th class="header" scope="col">{{ $place['number'] }}<span>{{ $place['name'] }}</span></th>
                             @endforeach
                             <th colspan="4" class="header bg-danger" scope="col" style="vertical-align:middle;">
-                                Absencese
+                                {{ __('nl-words.Absencese') }}
                             </th>
                             <th colspan="2" class="header bg-warning" scope="col" style="vertical-align:middle;">
-                                Sickness
+                                {{ __('nl-words.Sickness') }}
                             </th>
                         </tr>
                         </thead>

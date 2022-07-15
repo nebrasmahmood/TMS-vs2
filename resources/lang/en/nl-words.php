@@ -123,5 +123,7 @@ return [
     'thersday' =>"donderdag",
     'friday' => "vrijdag",
     'are_you_sure' => "Weet je het zeker",
+    'Absencese' => "Vrij/Vakantie",
+    'Sickness' => "Ziek",
 ]
 ?>
