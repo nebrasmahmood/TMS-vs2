@@ -408,6 +408,7 @@
         //
         //     $("#start").val(date + " " + startTime);
         //     $("#end").val(date + " " + endTime);
+        //    $("#addEventForm").submit();
         // });
         window.days = ["{{ __('nl-words.saturday') }}", "{{ __('nl-words.sunday') }}", "{{ __('nl-words.monday') }}", "{{ __('nl-words.tuesday') }}", "{{ __('nl-words.wednesday') }}", "{{ __('nl-words.thersday') }}", "{{ __('nl-words.friday') }}"];
     </script>

@@ -71,7 +71,7 @@ class EventsController extends Controller
             DB::commit();
         }catch (\Exception $ex){
             DB::rollBack();
-            session(['status'=>'Error',
+            session(['status'=>'error',
                 'msg'=>__('Something went wrong! Try again later.')]);
         }
         return redirect()->route('events.index');
@@ -82,11 +82,15 @@ class EventsController extends Controller
         $hour = explode(":", explode(' ', $time)[0])[0]; // 8
         $min = explode(":", explode(' ', $time)[0])[1]; // 12
         $sec = '00';
+
         if(strlen($hour) == 1)
-            $hour = '0' . $hour;
-        if(explode(' ',$time)[1] == 'PM' && intval($hour) > 12){
+            $hour = '0' . $hour; // 08
+
+        if(explode(' ',$time)[1] == 'AM' && intval($hour) == 12)
+            $hour = "00";
+        elseif(explode(' ',$time)[1] == 'PM' && intval($hour) != 12)
             $hour = intval($hour) + 12;
-        }
+
         $final_time = $hour . ':' . $min . ':' . $sec;
         if($final_time == '24:00:00'){
             $final_time = '23:59:59';
@@ -146,7 +150,7 @@ class EventsController extends Controller
         }catch (\Exception $ex){
             dd($ex);
             DB::rollBack();
-            session(['status'=>'Error',
+            session(['status'=>'error',
                 'msg'=>__('Something went wrong! Try again later.')]);
         }
         return redirect()->route('events.index');
@@ -168,7 +172,7 @@ class EventsController extends Controller
             DB::commit();
         }catch (\Exception $ex){
             DB::rollBack();
-            session(['status'=>'Error',
+            session(['status'=>'error',
                 'msg'=>__('Something went wrong! Try again later.')]);
         }
         return redirect()->back();
