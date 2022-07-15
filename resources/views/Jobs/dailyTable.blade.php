@@ -17,7 +17,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __("words.daily Jobs") }}</h1>
+                    <h1>{{ __("nl-words.daily Jobs") }}</h1>
                 </div>
             </div>
         </div>
@@ -26,13 +26,13 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li>
-                            <a href="{{ url('/') }}">{{ __('words.Home') }}</a>
+                            <a href="{{ url('/') }}">{{ __('nl-words.Home') }}</a>
                         </li>
                         <li class="">
-                            <a href="{{ route('jobs.index') }}">{{ __("words.Week Jobs") }}</a>
+                            <a href="{{ route('jobs.index') }}">{{ __("nl-words.Week Jobs") }}</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('jobs.dailyJobs', Route::current()->parameter('date')) }}">{{ __("words.daily Jobs") }}</a>
+                            <a href="{{ route('jobs.dailyJobs', Route::current()->parameter('date')) }}">{{ __("nl-words.daily Jobs") }}</a>
                         </li>
                     </ol>
                 </div>
@@ -116,7 +116,7 @@
     <script src="{{ asset('/assets/js/select2.min.js')}}"></script>
     <script>
         $('.helperSelect').select2({
-            placeholder: "{{ __('words.choose_jobname') }}",
+            placeholder: "{{ __('nl-words.choose_jobname') }}",
             language: "ar",
             searchInputPlaceholder: 'Enter jobname..',
             @error('helper_id')

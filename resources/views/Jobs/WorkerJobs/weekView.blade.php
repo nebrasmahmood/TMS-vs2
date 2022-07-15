@@ -129,7 +129,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __('words.Jobs') }}</h1>
+                    <h1>{{ __('nl-words.Jobs') }}</h1>
                 </div>
             </div>
         </div>
@@ -141,7 +141,7 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('events.index') }}">{{ __('words.Week Jobs') }}</a>
+                            <a href="{{ route('events.index') }}">{{ __('nl-words.Week Jobs') }}</a>
                         </li>
                     </ol>
                 </div>
@@ -171,7 +171,7 @@
 @endsection
 @push('scripts')
     <script>
-        window.days = ["{{ __('words.saturday') }}", "{{ __('words.sunday') }}", "{{ __('words.monday') }}", "{{ __('words.tuesday') }}", "{{ __('words.wednesday') }}", "{{ __('words.thersday') }}", "{{ __('words.friday') }}"];
+        window.days = ["{{ __('nl-words.saturday') }}", "{{ __('nl-words.sunday') }}", "{{ __('nl-words.monday') }}", "{{ __('nl-words.tuesday') }}", "{{ __('nl-words.wednesday') }}", "{{ __('nl-words.thersday') }}", "{{ __('nl-words.friday') }}"];
     </script>
     <script src="{{ asset('assets/js/fullcalendar-main.min.js') }}"></script>
     <script>

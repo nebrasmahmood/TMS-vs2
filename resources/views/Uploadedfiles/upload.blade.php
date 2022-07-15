@@ -103,7 +103,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __('words.upload_file') }}</h1>
+                    <h1>{{ __('nl-words.upload_file') }}</h1>
                 </div>
             </div>
         </div>
@@ -115,10 +115,10 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li>
-                            <a href="{{ route('uploadfiles.selectUsers') }}">{{ __('words.Select User') }}</a>
+                            <a href="{{ route('uploadfiles.selectUsers') }}">{{ __('nl-words.Select User') }}</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('uploadfiles.uploadTouser', $user_id) }}">{{ __('words.uploadTouser') }}</a>
+                            <a href="{{ route('uploadfiles.uploadTouser', $user_id) }}">{{ __('nl-words.uploadTouser') }}</a>
                         </li>
                     </ol>
                 </div>
@@ -129,7 +129,7 @@
     <div class="col-lg-12 table-card">
         <div class="card">
             <div class="card-header">
-                <h1>{{ __('words.uploadTouser') }}</h1>
+                <h1>{{ __('nl-words.uploadTouser') }}</h1>
             </div>
             <div class="card-body card-block">
                 <form action="{{ route('uploadfiles.upload', $user_id) }}" method="post" class="" enctype="multipart/form-data">
@@ -137,8 +137,8 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
-                                <label for="file_name" class="form-control-label">{{ __('words.file_name') }}</label>
-                                <input type="text" id="file_name" name="file_name" value="{{ old('file_name') }}" placeholder="{{ __('words.Enter_file_name') }}" class="form-control is-valid @error('file_name')is-invalid @enderror">
+                                <label for="file_name" class="form-control-label">{{ __('nl-words.file_name') }}</label>
+                                <input type="text" id="file_name" name="file_name" value="{{ old('file_name') }}" placeholder="{{ __('nl-words.Enter_file_name') }}" class="form-control is-valid @error('file_name')is-invalid @enderror">
                             </div>
                             @error("file_name")
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -162,7 +162,7 @@
                     </div>
                     <div class="row" style="margin-top: 0px !important;">
                         <div class="col-sm-12">
-                            <button type="submit" class="btn btn-success submit-btn">{{ __('words.upload_file') }}</button>
+                            <button type="submit" class="btn btn-success submit-btn">{{ __('nl-words.upload_file') }}</button>
                         </div>
                     </div>
                 </form>

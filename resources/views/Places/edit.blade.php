@@ -8,7 +8,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>Places</h1>
+                    <h1>{{ __("nl-words.Places") }}</h1>
                 </div>
             </div>
         </div>
@@ -20,10 +20,10 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li>
-                            <a href="{{ route('places.index') }}">Places</a>
+                            <a href="{{ route('places.index') }}">{{ __("nl-words.Places") }}</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('places.edit', $place->id) }}">Edit place</a>
+                            <a href="{{ route('places.edit', $place->id) }}">{{ __("nl-words.Edit place") }}</a>
                         </li>
                     </ol>
                 </div>
@@ -34,7 +34,7 @@
     <div class="col-lg-12 table-card">
         <div class="card">
             <div class="card-header">
-                <h1>Edit Place</h1>
+                <h1>{{ __("nl-words.Edit place") }}</h1>
             </div>
             <div class="card-body card-block">
                 <form action="{{ route('places.update', $place->id) }}" method="post" class="">
@@ -43,7 +43,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name" class="form-control-label">Name</label>
+                                <label for="name" class="form-control-label">{{ __("nl-words.Name") }}</label>
                                 <input type="text" id="name" name="name" value="{{ old('name', $place->name) }}" placeholder="Enter place name.." class="form-control is-valid @error('name')is-invalid @enderror">
                             </div>
                             @error("name")
@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="number" class=" form-control-label">Number<span class="text-muted">(optional)</span></label>
+                                <label for="number" class=" form-control-label">{{ __("nl-words.Number") }}<span class="text-muted">(optional)</span></label>
                                 <input type="number" id="number" name="number" value="{{ old('number', $place->number) }}" placeholder="Enter place number.." class="form-control is-valid @error('number')is-invalid @enderror">
                             </div>
                             @error("number")
@@ -62,7 +62,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <button type="submit" class="btn btn-success submit-btn">Edit Place</button>
+                            <button type="submit" class="btn btn-success submit-btn">{{ __("nl-words.Edit place") }}</button>
                         </div>
                     </div>
                 </form>

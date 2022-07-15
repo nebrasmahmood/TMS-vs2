@@ -75,7 +75,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __('words.posts') }}</h1>
+                    <h1>{{ __('nl-words.posts') }}</h1>
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('posts.index') }}">{{ __('words.posts') }}</a>
+                            <a href="{{ route('posts.index') }}">{{ __('nl-words.posts') }}</a>
                         </li>
                     </ol>
                 </div>

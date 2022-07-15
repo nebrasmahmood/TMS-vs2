@@ -9,7 +9,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __('words.categories') }}</h1>
+                    <h1>{{ __('nl-words.categories') }}</h1>
                 </div>
             </div>
         </div>
@@ -21,10 +21,10 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li>
-                            <a href="{{ route('categories.index') }}">{{ __('words.categories') }}</a>
+                            <a href="{{ route('categories.index') }}">{{ __('nl-words.categories') }}</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('categories.edit', $category->id) }}">{{ __('words.edit_cat') }}</a>
+                            <a href="{{ route('categories.edit', $category->id) }}">{{ __('nl-words.edit_cat') }}</a>
                         </li>
                     </ol>
                 </div>
@@ -44,8 +44,8 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
-                                <label for="name" class="form-control-label">{{ __('words.Name') }}</label>
-                                <input type="text" id="name" name="name" value="{{ old('name', $category->name) }}" placeholder="{{ __('words.Enter_category_name') }}" class="form-control is-valid @error('name')is-invalid @enderror">
+                                <label for="name" class="form-control-label">{{ __('nl-words.Name') }}</label>
+                                <input type="text" id="name" name="name" value="{{ old('name', $category->name) }}" placeholder="{{ __('nl-words.Enter_category_name') }}" class="form-control is-valid @error('name')is-invalid @enderror">
                             </div>
                             @error("name")
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -53,8 +53,8 @@
                         </div>
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
-                                <label for="description" class=" form-control-label">{{ __('words.description') }}<span class="text-muted">(optional)</span></label>
-                                <textarea id="description" name="description" placeholder="{{ __('words.Enter_category_description') }}" class="form-control is-valid @error('description')is-invalid @enderror">{{ old('description', $category->description) }}</textarea>
+                                <label for="description" class=" form-control-label">{{ __('nl-words.description') }}<span class="text-muted">(optional)</span></label>
+                                <textarea id="description" name="description" placeholder="{{ __('nl-words.Enter_category_description') }}" class="form-control is-valid @error('description')is-invalid @enderror">{{ old('description', $category->description) }}</textarea>
                             </div>
                             @error("description")
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <button type="submit" class="btn btn-success submit-btn">{{ __('words.edit_cat') }}</button>
+                            <button type="submit" class="btn btn-success submit-btn">{{ __('nl-words.edit_cat') }}</button>
                         </div>
                     </div>
                 </form>

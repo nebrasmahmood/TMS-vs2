@@ -16,7 +16,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>{{ __("words.Uploaded_files") }}</h1>
+                    <h1>{{ __("nl-words.Uploaded_files") }}</h1>
                 </div>
             </div>
         </div>
@@ -25,10 +25,10 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li>
-                            <a href="{{ url('/') }}">{{ __('words.Home') }}</a>
+                            <a href="{{ url('/') }}">{{ __('nl-words.Home') }}</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('uploadfiles.index') }}">{{ __("words.Uploaded_files") }}</a>
+                            <a href="{{ route('uploadfiles.index') }}">{{ __("nl-words.Uploaded_files") }}</a>
                         </li>
                     </ol>
                 </div>
@@ -44,8 +44,8 @@
                         <thead>
                         <tr class="table-head">
                             <th scope="col">#</th>
-                            <th scope="col">{{ __("words.file_name") }}</th>
-                            <th scope="col">{{ __("words.file_path") }}</th>
+                            <th scope="col">{{ __("nl-words.file_name") }}</th>
+                            <th scope="col">{{ __("nl-words.file_path") }}</th>
                         </tr>
                         </thead>
                         <tbody>
