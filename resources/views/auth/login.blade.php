@@ -45,9 +45,9 @@
                     <div class="col-sm-5 card card-inverse card-primary p-3 img-card" style="width:44%">
                         <div class="card-block text-xs-center img-section">
                             <div>
-                                <h2 style="letter-spacing: 5px;"><span>P</span>AKKET</h2>
-                                <h2 style="letter-spacing: 3px;"><span>S</span>ERVICE</h2>
-                                <h2><span>Z</span>EELAND</h2>
+                                <h2 style="letter-spacing: 5px;"><span>T</span>RANSPORT</h2>
+                                <h2 style="letter-spacing: 3px;"><span>M</span>ANAGEMENT</h2>
+                                <h2><span>S</span>YSTEM</h2>
                             </div>
                         </div>
                     </div>
