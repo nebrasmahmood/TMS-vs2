@@ -139,7 +139,7 @@ class PostsController extends Controller
     {
         try{
             DB::beginTransaction();
-            Storage::disk('posts_imgs')->delete(explode('/', $post->post_img)[2]);
+           // Storage::disk('posts_imgs')->delete(explode('/', $post->post_img)[2]);
             $post->delete();
             session(['status'=>'success',
                 'msg'=>__('The post has been deleted successfully!')]);
