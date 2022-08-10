@@ -194,13 +194,14 @@
                                                 </td>
                                                 <td>{{ $user->busNo }}</td>
                                                 <td>
-                                                    <a href="{{ route('users.edit', $user->id) }}">
-                                                        <i class="fa fa-edit text-primary"></i>
-                                                    </a> |
                                                     <form action="{{ route('users.destroy', $user->id) }}" method="post" class="delete-form">
                                                         @csrf
                                                         @method('delete')
                                                         <i class="far fa-trash-alt text-danger"></i>
+                                                        |
+                                                        <a href="{{ route('users.edit', $user->id) }}">
+                                                        <i class="fa fa-edit text-primary"></i>
+                                                    </a>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -230,13 +231,15 @@
                                                 <td>{{ $place->name }}</td>
                                                 <td>{{ $place->number }}</td>
                                                 <td>
-                                                    <a href="{{ route('places.edit', $place->id) }}">
-                                                        <i class="fa fa-edit text-primary"></i>
-                                                    </a> |
+                                                   
                                                     <form action="{{ route('places.destroy', $place->id) }}" method="post" class="delete-form">
                                                         @csrf
                                                         @method('delete')
                                                         <i class="far fa-trash-alt text-danger"></i>
+                                                        |
+                                                        <a href="{{ route('places.edit', $place->id) }}">
+                                                        <i class="fa fa-edit text-primary"></i>
+                                                    </a> 
                                                     </form>
                                                 </td>
                                             </tr>
@@ -268,13 +271,15 @@
                                                 <td>{{ $cat->description }}</td>
                                                 <td>{{ $cat->status == 1 ? 'Active' : 'Unactive' }}</td>
                                                 <td>
-                                                    <a href="{{ route('categories.edit', $cat->id) }}">
-                                                        <i class="fa fa-edit text-primary"></i>
-                                                    </a> |
+                                                    
                                                     <form action="{{ route('categories.destroy', $cat->id) }}" method="post" class="delete-form">
                                                         @csrf
                                                         @method('delete')
                                                         <i class="far fa-trash-alt text-danger"></i>
+                                                        |
+                                                        <a href="{{ route('categories.edit', $cat->id) }}">
+                                                        <i class="fa fa-edit text-primary"></i>
+                                                    </a>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -310,13 +315,15 @@
                                                     @endphp
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('posts.edit', $post->id) }}">
-                                                        <i class="fa fa-edit text-primary"></i>
-                                                    </a> |
+                                                    
+                                                    </a>
                                                     <form action="{{ route('posts.destroy', $post->id) }}" method="post" class="delete-form">
                                                         @csrf
                                                         @method('delete')
                                                         <i class="far fa-trash-alt text-danger"></i>
+                                                        |
+                                                        <a href="{{ route('posts.edit', $post->id) }}">
+                                                        <i class="fa fa-edit text-primary"></i>
                                                     </form>
                                                 </td>
                                             </tr>

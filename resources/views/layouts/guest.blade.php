@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Pakket Service Zeeland - PSZ</title>
+        <title>Transport Management System - TMS</title>
         <meta name="description" content="Pakket Service Zeeland Website">
         <link rel="shortcut icon" href="{{ asset("images/favicon.ico") }}">
 

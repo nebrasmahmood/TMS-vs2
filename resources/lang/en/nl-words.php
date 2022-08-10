@@ -28,6 +28,7 @@ return [
     'admin'=>'Admin',
     'User'=>'Gebruiker',
     'Edit user'=>'Edit gebruiker',
+    'Edit User'=>'Edit Gebruiker',
     'choose_username'=>'-- Kies gebruikersnaam --',
     'choose_busNo'=>'-- Kies bus nummer --',
     'choose_helperName'=>'-- Kies bijRijder  --',
